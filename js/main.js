@@ -7,7 +7,6 @@
 const isMobile = () => window.innerWidth <= 850;
 
 document.addEventListener('DOMContentLoaded', () => {
-  initViewportHeight();
   initMobileMenu();
   initStars();
   initShootingStars();
@@ -15,22 +14,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initMenuEffects();
   initWindowControls();
 });
-
-/**
- * iOS Safari viewport height fix
- */
-function initViewportHeight() {
-  function setVH() {
-    const vh = window.innerHeight * 0.01;
-    document.documentElement.style.setProperty('--vh', `${vh}px`);
-  }
-
-  setVH();
-  window.addEventListener('resize', setVH);
-  window.addEventListener('orientationchange', () => {
-    setTimeout(setVH, 100);
-  });
-}
 
 /**
  * Mobile hamburger menu
