@@ -60,14 +60,14 @@ function initCategoryEvents() {
       const hash = category === 'all' ? '' : '#' + category;
 
       if (isPostPage) {
-        // 포스트 페이지에서는 홈으로 이동
-        window.location.href = '../../index.html' + hash;
+        // 포스트 페이지에서는 기록(블로그)으로 이동
+        window.location.href = '../index.html' + hash;
         return;
       }
 
       if (isGuestbook) {
-        // 방명록에서는 홈으로 이동
-        window.location.href = 'index.html' + hash;
+        // 방명록에서는 기록(블로그)으로 이동
+        window.location.href = 'blog/index.html' + hash;
         return;
       }
 
