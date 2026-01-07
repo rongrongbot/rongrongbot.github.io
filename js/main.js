@@ -22,6 +22,7 @@ function initMobileMenu() {
   // Create hamburger button
   const hamburger = document.createElement('button');
   hamburger.className = 'hamburger-btn';
+  hamburger.id = 'hamburgerBtn';
   hamburger.innerHTML = `
     <span class="hamburger-line"></span>
     <span class="hamburger-line"></span>
@@ -32,17 +33,36 @@ function initMobileMenu() {
   // Create overlay
   const overlay = document.createElement('div');
   overlay.className = 'sidebar-overlay';
+  overlay.id = 'sidebarOverlay';
 
   // Add to body
   document.body.appendChild(hamburger);
   document.body.appendChild(overlay);
 
-  const sidebar = document.getElementById('sidebar');
+  function getSidebar() {
+    return document.getElementById('sidebar');
+  }
+
+  function openMobileMenu() {
+    const sidebar = getSidebar();
+    if (sidebar) sidebar.classList.add('sidebar-open');
+    overlay.classList.add('active');
+    hamburger.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeMobileMenu() {
+    const sidebar = getSidebar();
+    if (sidebar) sidebar.classList.remove('sidebar-open');
+    overlay.classList.remove('active');
+    hamburger.classList.remove('active');
+    document.body.style.overflow = '';
+  }
 
   // Toggle menu
   hamburger.addEventListener('click', () => {
-    const isOpen = sidebar.classList.contains('sidebar-open');
-    if (isOpen) {
+    const sidebar = getSidebar();
+    if (sidebar && sidebar.classList.contains('sidebar-open')) {
       closeMobileMenu();
     } else {
       openMobileMenu();
@@ -52,35 +72,20 @@ function initMobileMenu() {
   // Close on overlay click
   overlay.addEventListener('click', closeMobileMenu);
 
-  // Close on menu link click (mobile)
-  if (sidebar) {
-    sidebar.addEventListener('click', (e) => {
-      if (e.target.closest('.menu-link') && isMobile()) {
-        closeMobileMenu();
-      }
-    });
-  }
+  // Close on menu link click (use event delegation on document)
+  document.addEventListener('click', (e) => {
+    if (e.target.closest('.menu-link, .category-link') && isMobile()) {
+      setTimeout(closeMobileMenu, 100);
+    }
+  });
 
   // Close on escape key
   document.addEventListener('keydown', (e) => {
+    const sidebar = getSidebar();
     if (e.key === 'Escape' && sidebar?.classList.contains('sidebar-open')) {
       closeMobileMenu();
     }
   });
-
-  function openMobileMenu() {
-    sidebar?.classList.add('sidebar-open');
-    overlay.classList.add('active');
-    hamburger.classList.add('active');
-    document.body.style.overflow = 'hidden';
-  }
-
-  function closeMobileMenu() {
-    sidebar?.classList.remove('sidebar-open');
-    overlay.classList.remove('active');
-    hamburger.classList.remove('active');
-    document.body.style.overflow = '';
-  }
 }
 
 /**
