@@ -19,6 +19,9 @@ document.addEventListener('DOMContentLoaded', () => {
  * Mobile hamburger menu
  */
 function initMobileMenu() {
+  // Only run on mobile
+  if (!isMobile()) return;
+
   // Create hamburger button
   const hamburger = document.createElement('button');
   hamburger.className = 'hamburger-btn';
@@ -38,6 +41,12 @@ function initMobileMenu() {
   // Add to body
   document.body.appendChild(hamburger);
   document.body.appendChild(overlay);
+
+  // Move sidebar to body for proper z-index stacking
+  const sidebar = document.getElementById('sidebar');
+  if (sidebar) {
+    document.body.appendChild(sidebar);
+  }
 
   function getSidebar() {
     return document.getElementById('sidebar');
