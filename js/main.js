@@ -7,6 +7,7 @@
 const isMobile = () => window.innerWidth <= 850;
 
 document.addEventListener('DOMContentLoaded', () => {
+  initViewportHeight();
   initMobileMenu();
   initStars();
   initShootingStars();
@@ -14,6 +15,28 @@ document.addEventListener('DOMContentLoaded', () => {
   initMenuEffects();
   initWindowControls();
 });
+
+/**
+ * iOS Safari viewport height fix
+ * visualViewport API로 툴바 변화에 실시간 대응
+ */
+function initViewportHeight() {
+  function setVH() {
+    const vh = (window.visualViewport?.height || window.innerHeight) * 0.01;
+    document.documentElement.style.setProperty('--vh', `${vh}px`);
+  }
+
+  setVH();
+
+  // visualViewport API 지원 시 (iOS Safari)
+  if (window.visualViewport) {
+    window.visualViewport.addEventListener('resize', setVH);
+  }
+
+  // fallback
+  window.addEventListener('resize', setVH);
+  window.addEventListener('orientationchange', () => setTimeout(setVH, 100));
+}
 
 /**
  * Mobile hamburger menu
