@@ -102,8 +102,7 @@ function getSidebarHTML(currentPage, basePath, categories) {
           <span class="status-dot"></span>
           <span>online</span>
         </div>
-        <p class="profile-bio">pixels & dreams</p>
-      </div>
+              </div>
     </div>
 
     <!-- Menu Box -->
