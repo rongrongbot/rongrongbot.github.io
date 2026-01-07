@@ -120,7 +120,7 @@ function renderRecentPostsHTML(container, posts) {
     <ul class="post-list">
       ${posts.map(post => `
         <li class="post-item">
-          <a href="blog/posts/${post.file}" class="post-link">
+          <a href="blog/posts/post.html?id=${post.id}" class="post-link">
             <span class="post-date">${post.date}</span>
             <span class="post-title">${post.title}</span>
           </a>
@@ -171,7 +171,7 @@ function renderAllPostsHTML(container, posts, categories) {
         </div>
       </div>
       <h3 class="blog-card-title">
-        <a href="posts/${post.file}">${post.title}</a>
+        <a href="posts/post.html?id=${post.id}">${post.title}</a>
       </h3>
       <p class="blog-card-excerpt">${post.excerpt}</p>
     </article>
