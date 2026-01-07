@@ -131,7 +131,7 @@
     border-right: 3px solid #333 !important;
     border-radius: 0 !important;
     padding: 15px !important;
-    padding-bottom: 30px !important;
+    padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 50px) !important;
     gap: 10px !important;
     transform: translateX(-100%);
     background: #fff0f3 !important;
