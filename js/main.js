@@ -61,10 +61,14 @@ function initMobileMenu() {
 
   // Toggle menu
   hamburger.addEventListener('click', () => {
+    console.log('Hamburger clicked');
     const sidebar = getSidebar();
+    console.log('Sidebar element:', sidebar);
     if (sidebar && sidebar.classList.contains('sidebar-open')) {
+      console.log('Closing menu');
       closeMobileMenu();
     } else {
+      console.log('Opening menu');
       openMobileMenu();
     }
   });

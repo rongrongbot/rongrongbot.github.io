@@ -43,7 +43,7 @@
     z-index: 1001;
     width: 44px;
     height: 44px;
-    background: var(--card-bg);
+    background: #fff0f3;
     border: 2px solid var(--primary);
     border-radius: 10px;
     cursor: pointer;
@@ -189,10 +189,10 @@
   }
 
   .sidebar {
-    width: 260px;
-    min-width: 260px;
-    padding: 60px 12px 12px;
-    gap: 8px;
+    width: 260px !important;
+    min-width: 260px !important;
+    padding: 60px 12px 12px !important;
+    gap: 8px !important;
   }
 
   .sidebar-box {
@@ -311,9 +311,9 @@
   }
 
   .sidebar {
-    width: 240px;
-    min-width: 240px;
-    padding: 50px 10px 10px;
+    width: 240px !important;
+    min-width: 240px !important;
+    padding: 50px 10px 10px !important;
   }
 
   .main-content {
