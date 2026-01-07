@@ -3,7 +3,11 @@
  * Handles stars, shooting stars, and interactive elements
  */
 
+// Mobile detection
+const isMobile = () => window.innerWidth <= 850;
+
 document.addEventListener('DOMContentLoaded', () => {
+  initMobileMenu();
   initStars();
   initShootingStars();
   initClickSparkles();
@@ -12,13 +16,82 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /**
+ * Mobile hamburger menu
+ */
+function initMobileMenu() {
+  // Create hamburger button
+  const hamburger = document.createElement('button');
+  hamburger.className = 'hamburger-btn';
+  hamburger.innerHTML = `
+    <span class="hamburger-line"></span>
+    <span class="hamburger-line"></span>
+    <span class="hamburger-line"></span>
+  `;
+  hamburger.setAttribute('aria-label', '메뉴 열기');
+
+  // Create overlay
+  const overlay = document.createElement('div');
+  overlay.className = 'sidebar-overlay';
+
+  // Add to body
+  document.body.appendChild(hamburger);
+  document.body.appendChild(overlay);
+
+  const sidebar = document.getElementById('sidebar');
+
+  // Toggle menu
+  hamburger.addEventListener('click', () => {
+    const isOpen = sidebar.classList.contains('sidebar-open');
+    if (isOpen) {
+      closeMobileMenu();
+    } else {
+      openMobileMenu();
+    }
+  });
+
+  // Close on overlay click
+  overlay.addEventListener('click', closeMobileMenu);
+
+  // Close on menu link click (mobile)
+  if (sidebar) {
+    sidebar.addEventListener('click', (e) => {
+      if (e.target.closest('.menu-link') && isMobile()) {
+        closeMobileMenu();
+      }
+    });
+  }
+
+  // Close on escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && sidebar?.classList.contains('sidebar-open')) {
+      closeMobileMenu();
+    }
+  });
+
+  function openMobileMenu() {
+    sidebar?.classList.add('sidebar-open');
+    overlay.classList.add('active');
+    hamburger.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeMobileMenu() {
+    sidebar?.classList.remove('sidebar-open');
+    overlay.classList.remove('active');
+    hamburger.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+}
+
+/**
  * Create background stars
  */
 function initStars() {
   const container = document.getElementById('starsBg');
   if (!container) return;
 
-  const starCount = 80;
+  // Reduce stars on mobile for performance
+  const starCount = isMobile() ? 20 : 80;
 
   for (let i = 0; i < starCount; i++) {
     const star = document.createElement('div');
@@ -37,6 +110,9 @@ function initStars() {
  * Create shooting stars periodically
  */
 function initShootingStars() {
+  // Disable shooting stars on mobile for performance
+  if (isMobile()) return;
+
   const container = document.getElementById('shootingStars');
   if (!container) return;
 
@@ -81,6 +157,9 @@ function initShootingStars() {
  * Click sparkle effect
  */
 function initClickSparkles() {
+  // Disable sparkles on mobile for performance
+  if (isMobile()) return;
+
   const colors = ['#ff6b8a', '#ff8fa3', '#ffb6c1', '#ff4757', '#ffb347'];
 
   document.addEventListener('click', (e) => {
