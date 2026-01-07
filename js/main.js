@@ -87,11 +87,13 @@ function initMobileMenu() {
  * Create background stars
  */
 function initStars() {
+  // No stars on mobile
+  if (isMobile()) return;
+
   const container = document.getElementById('starsBg');
   if (!container) return;
 
-  // Reduce stars on mobile for performance
-  const starCount = isMobile() ? 20 : 80;
+  const starCount = 80;
 
   for (let i = 0; i < starCount; i++) {
     const star = document.createElement('div');
