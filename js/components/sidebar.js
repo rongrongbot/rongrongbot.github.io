@@ -95,7 +95,7 @@ function getSidebarHTML(currentPage, basePath, categories) {
       </div>
       <div class="profile-content">
         <div class="profile-img">
-          <span class="profile-emoji">👾</span>
+          <img src="${basePath}images/i0XIDM9m_400x400.jpg" alt="profile">
         </div>
         <div class="profile-name">rongrongbot</div>
         <div class="profile-status">
