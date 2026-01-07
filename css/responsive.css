@@ -117,7 +117,7 @@
     max-height: 100vh !important;
     overflow-y: auto !important;
     overflow-x: hidden !important;
-    z-index: 1000 !important;
+    z-index: 1100 !important;
     border-right: 3px solid #333 !important;
     border-bottom: none !important;
     border-radius: 0 !important;
@@ -140,6 +140,12 @@
 
   .sidebar.sidebar-open {
     transform: translateX(0) !important;
+    pointer-events: auto !important;
+  }
+
+  /* Sidebar 내부 요소들 클릭 가능하게 */
+  .sidebar.sidebar-open * {
+    pointer-events: auto;
   }
 
   .sidebar-box {
