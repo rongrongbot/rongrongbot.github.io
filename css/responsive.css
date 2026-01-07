@@ -365,10 +365,34 @@
   }
 }
 
-/* Mobile - 배경 효과 숨기기 */
+/* Mobile - 배경 효과 숨기기 & 오버플로우 수정 */
 @media (max-width: 850px) {
   .stars-bg,
   .shooting-stars {
     display: none !important;
+  }
+
+  body {
+    overflow-x: hidden !important;
+  }
+
+  .ganhome-wrapper {
+    overflow: hidden !important;
+    width: 95% !important;
+    max-width: 100vw !important;
+    box-sizing: border-box !important;
+  }
+
+  .main-content {
+    overflow: hidden !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  .content-window {
+    overflow: hidden !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
   }
 }
