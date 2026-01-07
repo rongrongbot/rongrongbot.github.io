@@ -123,8 +123,8 @@
     border-radius: 0 !important;
     padding: 70px 15px 15px !important;
     gap: 10px !important;
-    transform: translateX(-100%) !important;
-    transition: transform 0.3s ease !important;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
     background: #fff0f3 !important;
     /* GPU acceleration for smooth animations */
     will-change: transform;
