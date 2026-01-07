@@ -109,6 +109,7 @@
     width: 90%;
     max-width: 600px;
     min-height: auto;
+    overflow-x: hidden !important;
   }
 
   /* Sidebar - hidden by default, slide in from left */
@@ -371,18 +372,26 @@
     transition: none !important;
   }
 
-  /* 사이드바 트랜지션만 유지 */
-  .sidebar {
-    transition: transform 0.3s ease !important;
-  }
-
-  .sidebar-overlay {
-    transition: opacity 0.3s ease, visibility 0.3s ease !important;
-  }
-
   /* 별 배경 숨기기 */
   .stars-bg,
   .shooting-stars {
     display: none !important;
+  }
+
+  /* 메인 콘텐츠 오버플로우 수정 */
+  .main-content {
+    overflow-x: hidden !important;
+    max-width: 100% !important;
+  }
+
+  .content-window {
+    overflow: hidden !important;
+    max-width: 100% !important;
+    word-break: break-word !important;
+  }
+
+  .window-body {
+    overflow-x: hidden !important;
+    max-width: 100% !important;
   }
 }
