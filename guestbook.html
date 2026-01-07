@@ -3,18 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Leave a message in Jiyo's guestbook!">
-  <title>☆ Guestbook - rongrongbot's Home ☆</title>
+  <meta name="description" content="방명록에 흔적을 남겨주세요!">
+  <title>☆ 방명록 - rongronglog ☆</title>
 
   <!-- Open Graph -->
-  <meta property="og:title" content="Guestbook - rongronglog">
+  <meta property="og:title" content="방명록 - rongronglog">
   <meta property="og:description" content="방명록에 흔적을 남겨주세요!">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="rongronglog">
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Guestbook - rongronglog">
+  <meta name="twitter:title" content="방명록 - rongronglog">
   <meta name="twitter:description" content="방명록에 흔적을 남겨주세요!">
 
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><text y='14' font-size='14'>&#128221;</text></svg>">
@@ -59,10 +59,9 @@
         </div>
         <div class="window-body">
           <div class="welcome-content">
-            <h1>✦ Guestbook ✦</h1>
+            <h1>✦ 방명록 ✦</h1>
             <p class="welcome-text">
-              방명록에 흔적을 남겨주세요!<br>
-              Leave a message for me!
+              방명록에 흔적을 남겨주세요!
             </p>
           </div>
         </div>
@@ -79,21 +78,21 @@
           </div>
         </div>
         <div class="window-body">
-          <h2>✏️ Sign the Guestbook</h2>
+          <h2>✏️ 메시지 남기기</h2>
           <form id="guestbookForm" class="guestbook-form">
             <div class="form-group">
-              <label class="form-label" for="name">Name</label>
-              <input type="text" id="name" name="name" class="form-input" placeholder="Anonymous" maxlength="50">
+              <label class="form-label" for="name">이름</label>
+              <input type="text" id="name" name="name" class="form-input" placeholder="익명" maxlength="50">
             </div>
             <div class="form-group">
-              <label class="form-label" for="message">Message *</label>
-              <textarea id="message" name="message" class="form-textarea" placeholder="Say something nice!" maxlength="500" required></textarea>
+              <label class="form-label" for="message">메시지 *</label>
+              <textarea id="message" name="message" class="form-textarea" placeholder="하고 싶은 말을 남겨주세요!" maxlength="500" required></textarea>
               <div class="char-count">
                 <span id="charCount">0</span>/500
               </div>
             </div>
             <button type="submit" class="submit-btn" id="submitBtn">
-              ♡ Leave Message
+              ♡ 등록하기
             </button>
           </form>
         </div>
@@ -110,10 +109,10 @@
           </div>
         </div>
         <div class="window-body">
-          <h2>💬 Messages <span class="comment-count" id="commentCount">(0)</span></h2>
+          <h2>💬 메시지 <span class="comment-count" id="commentCount">(0)</span></h2>
           <div id="commentsList" class="comments-list">
             <div class="loading-message">
-              ✧ Loading messages...
+              ✧ 메시지를 불러오는 중...
             </div>
           </div>
         </div>

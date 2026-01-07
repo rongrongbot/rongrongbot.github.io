@@ -26,26 +26,7 @@ const cancelDeleteBtn = document.getElementById('cancelDelete');
 let commentToDelete = null;
 
 // ============ Mock Data for Testing ============
-let mockComments = [
-  {
-    id: '1',
-    name: 'Pixel Friend',
-    message: 'Love your site! The pixel aesthetic is so cute!',
-    createdAt: '2024-01-05T10:30:00Z'
-  },
-  {
-    id: '2',
-    name: 'Anonymous',
-    message: 'Found this through a webring. Great vibes here!',
-    createdAt: '2024-01-04T15:20:00Z'
-  },
-  {
-    id: '3',
-    name: 'RetroFan',
-    message: 'This reminds me of the old web days. Keep it up!',
-    createdAt: '2024-01-03T09:00:00Z'
-  }
-];
+let mockComments = [];
 
 // ============ Initialize ============
 document.addEventListener('DOMContentLoaded', () => {
@@ -74,7 +55,7 @@ async function loadComments() {
     console.error('Error loading comments:', error);
     commentsList.innerHTML = `
       <div class="error-message">
-        Failed to load messages. Please try again later.
+        메시지를 불러오는데 실패했습니다.
       </div>
     `;
   }
@@ -86,7 +67,7 @@ function renderComments(comments) {
     commentsList.innerHTML = `
       <div class="comments-empty">
         <span class="comments-empty-icon">&#128172;</span>
-        <p>No messages yet. Be the first to sign!</p>
+        <p>아직 메시지가 없습니다. 첫 번째 방명록을 남겨주세요!</p>
       </div>
     `;
     commentCount.textContent = '(0)';
@@ -131,17 +112,17 @@ function initForm() {
 }
 
 async function submitComment() {
-  const name = nameInput.value.trim() || 'Anonymous';
+  const name = nameInput.value.trim() || '익명';
   const message = messageInput.value.trim();
 
   if (!message) {
-    showFormError('Please enter a message!');
+    showFormError('메시지를 입력해주세요!');
     return;
   }
 
   // Disable form
   submitBtn.disabled = true;
-  submitBtn.textContent = 'Sending...';
+  submitBtn.textContent = '등록 중...';
 
   try {
     if (USE_MOCK_DATA) {
@@ -169,17 +150,17 @@ async function submitComment() {
     }
 
     // Success
-    showFormSuccess('Message posted! Thank you!');
+    showFormSuccess('등록되었습니다! 감사합니다!');
     guestbookForm.reset();
     charCount.textContent = '0';
     loadComments();
 
   } catch (error) {
     console.error('Error submitting comment:', error);
-    showFormError(error.message || 'Failed to post message. Please try again.');
+    showFormError(error.message || '등록에 실패했습니다. 다시 시도해주세요.');
   } finally {
     submitBtn.disabled = false;
-    submitBtn.innerHTML = '&#9829; Leave Message';
+    submitBtn.innerHTML = '♡ 등록하기';
   }
 }
 

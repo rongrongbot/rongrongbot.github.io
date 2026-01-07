@@ -117,7 +117,7 @@ function getSidebarHTML(currentPage, basePath, categories) {
         </a>
         <a href="${blogHref}" class="menu-link${currentPage === 'blog' ? ' active' : ''}">
           <span class="menu-icon">📝</span>
-          <span>Blog</span>
+          <span>기록</span>
         </a>
         <!-- Category Sub-menu -->
         <div class="category-submenu">
@@ -128,7 +128,7 @@ function getSidebarHTML(currentPage, basePath, categories) {
         </div>
         <a href="${basePath}guestbook.html" class="menu-link${currentPage === 'guestbook' ? ' active' : ''}">
           <span class="menu-icon">📮</span>
-          <span>Guestbook</span>
+          <span>방명록</span>
         </a>
       </nav>
     </div>
