@@ -68,7 +68,7 @@
   }
 
   .hamburger-btn.active .hamburger-line:nth-child(1) {
-    transform: rotate(45deg) translate(5px, 5px);
+    transform: rotate(45deg) translate(4px, 4px);
   }
 
   .hamburger-btn.active .hamburger-line:nth-child(2) {
@@ -76,7 +76,12 @@
   }
 
   .hamburger-btn.active .hamburger-line:nth-child(3) {
-    transform: rotate(-45deg) translate(5px, -5px);
+    transform: rotate(-45deg) translate(4px, -4px);
+  }
+
+  .hamburger-btn,
+  .hamburger-line {
+    transition: all 0.2s ease !important;
   }
 
   /* Sidebar overlay */
@@ -342,5 +347,28 @@
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+}
+
+/* Mobile - 모든 애니메이션 비활성화 */
+@media (max-width: 850px) {
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  /* 사이드바 트랜지션만 유지 */
+  .sidebar {
+    transition: transform 0.3s ease !important;
+  }
+
+  .sidebar-overlay {
+    transition: opacity 0.3s ease, visibility 0.3s ease !important;
+  }
+
+  /* 별 배경 숨기기 */
+  .stars-bg,
+  .shooting-stars {
+    display: none !important;
   }
 }
