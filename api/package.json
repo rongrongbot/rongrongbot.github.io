@@ -1,0 +1,12 @@
+{
+  "name": "guestbook-api",
+  "version": "1.0.0",
+  "description": "Guestbook API for Jiyo's Homepage",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vercel dev"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}

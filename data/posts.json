@@ -1,0 +1,19 @@
+{
+  "categories": [
+    { "id": "daily", "name": "일상" },
+    { "id": "ps", "name": "PS" },
+    { "id": "books", "name": "독서" },
+    { "id": "food", "name": "미식" }
+  ],
+  "posts": [
+    {
+      "id": "2025-review",
+      "title": "2025년 회고",
+      "date": "2026.01.07",
+      "category": "daily",
+      "tags": ["회고"],
+      "excerpt": "2025년이 끝나고 2026년이 밝았습니다. 지난 한 해를 돌아보며...",
+      "file": "2025-review.html"
+    }
+  ]
+}

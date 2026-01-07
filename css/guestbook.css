@@ -1,0 +1,272 @@
+/* =============================================
+   Guestbook - Korean 갠홈 Style
+   ============================================= */
+
+/* Form Styles */
+.guestbook-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-label {
+  font-size: 12px;
+  color: var(--primary-dark);
+  font-weight: 600;
+}
+
+.form-input,
+.form-textarea {
+  font-family: var(--font-body);
+  font-size: 13px;
+  padding: 10px 12px;
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
+  background: #fafafa;
+  color: var(--text-dark);
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.form-input:focus,
+.form-textarea:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(255, 107, 138, 0.2);
+}
+
+.form-textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.char-count {
+  font-size: 11px;
+  color: var(--text-light);
+  text-align: right;
+}
+
+.char-count.warning {
+  color: #e8b4c8;
+}
+
+.submit-btn {
+  font-family: var(--font-title);
+  font-size: 12px;
+  padding: 10px 20px;
+  background: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  align-self: flex-start;
+}
+
+.submit-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(255, 107, 138, 0.4);
+}
+
+.submit-btn:disabled {
+  background: var(--border-light);
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.submit-btn.secondary {
+  background: var(--border-light);
+  color: var(--text-dark);
+}
+
+.submit-btn.secondary:hover {
+  background: #c0c0d0;
+}
+
+/* Comments List */
+.comments-list {
+  max-height: 500px;
+  overflow-y: auto;
+}
+
+.loading-message {
+  text-align: center;
+  padding: 30px;
+  color: var(--text-light);
+  font-size: 13px;
+}
+
+/* Comment Card */
+.comment-card {
+  background: rgba(255, 107, 138, 0.05);
+  border: 1px solid var(--border-light);
+  border-radius: 10px;
+  padding: 15px;
+  margin-bottom: 12px;
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+.comment-card:hover {
+  background: rgba(255, 107, 138, 0.1);
+  border-color: var(--primary);
+}
+
+.comment-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.comment-author {
+  font-family: var(--font-title);
+  font-size: 13px;
+  color: var(--primary-dark);
+  font-weight: 600;
+}
+
+.comment-date {
+  font-size: 11px;
+  color: var(--text-light);
+}
+
+.comment-message {
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--text-dark);
+  word-wrap: break-word;
+}
+
+.comment-delete {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: transparent;
+  border: none;
+  font-size: 14px;
+  color: var(--text-light);
+  cursor: pointer;
+  opacity: 0;
+  transition: all 0.2s ease;
+  padding: 4px;
+}
+
+.comment-card:hover .comment-delete {
+  opacity: 0.6;
+}
+
+.comment-delete:hover {
+  opacity: 1;
+  color: #e8b4c8;
+}
+
+/* Empty State */
+.comments-empty {
+  text-align: center;
+  padding: 40px 20px;
+  color: var(--text-light);
+}
+
+.comments-empty-icon {
+  font-size: 40px;
+  margin-bottom: 15px;
+  display: block;
+}
+
+.comments-empty-text {
+  font-size: 13px;
+}
+
+/* Success & Error Messages */
+.success-message,
+.error-message {
+  padding: 12px 16px;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  font-size: 13px;
+  text-align: center;
+  animation: fadeIn 0.3s ease;
+}
+
+.success-message {
+  background: rgba(152, 212, 200, 0.2);
+  color: #3a8a7a;
+  border: 1px solid #98d4c8;
+}
+
+.error-message {
+  background: rgba(232, 180, 200, 0.2);
+  color: #a05a7a;
+  border: 1px solid #e8b4c8;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Modal */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(2px);
+}
+
+.modal-content {
+  position: relative;
+  z-index: 1;
+  max-width: 400px;
+  width: 90%;
+  animation: modalSlideIn 0.3s ease;
+}
+
+@keyframes modalSlideIn {
+  from { transform: translateY(-20px) scale(0.95); opacity: 0; }
+  to { transform: translateY(0) scale(1); opacity: 1; }
+}
+
+/* Comment Count Badge */
+.comment-count {
+  font-size: 12px;
+  color: var(--primary);
+  font-weight: normal;
+}
+
+/* Scrollbar for comments */
+.comments-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.comments-list::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.comments-list::-webkit-scrollbar-thumb {
+  background: var(--primary);
+  border-radius: 3px;
+}

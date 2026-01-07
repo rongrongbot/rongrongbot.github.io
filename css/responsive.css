@@ -1,0 +1,202 @@
+/* =============================================
+   Korean 갠홈 - Responsive Styles (이분할 레이아웃)
+   ============================================= */
+
+/* Desktop - 기본 레이아웃 (모든 페이지 동일) */
+.ganhome-wrapper {
+  width: 1000px;
+  min-height: 650px;
+}
+
+.sidebar {
+  width: 280px;
+  min-width: 280px;
+}
+
+/* Large Tablet - 1050px 이하 */
+@media (max-width: 1050px) {
+  .ganhome-wrapper {
+    width: 95%;
+    max-width: 1000px;
+    margin: 30px auto;
+  }
+}
+
+/* Tablet - 850px 이하 */
+@media (max-width: 850px) {
+  .ganhome-wrapper {
+    flex-direction: column;
+    width: 90%;
+    max-width: 600px;
+    min-height: auto;
+  }
+
+  .sidebar {
+    width: 100%;
+    min-width: 100%;
+    border-right: none;
+    border-bottom: 3px solid #333;
+    padding: 15px;
+    gap: 10px;
+  }
+
+  .sidebar-box {
+    flex: 1;
+  }
+
+  .profile-box {
+    order: 1;
+  }
+
+  .menu-box {
+    order: 2;
+  }
+
+  .music-box {
+    order: 3;
+  }
+
+  .links-box {
+    order: 4;
+  }
+
+  .main-content {
+    padding: 15px;
+    gap: 12px;
+  }
+}
+
+/* Mobile - 600px 이하 */
+@media (max-width: 600px) {
+  .ganhome-wrapper {
+    width: 95%;
+    margin: 15px auto;
+    border-radius: 15px;
+  }
+
+  .sidebar {
+    padding: 12px;
+    gap: 8px;
+  }
+
+  .sidebar-box {
+    border-radius: 10px;
+  }
+
+  .profile-content {
+    padding: 12px;
+  }
+
+  .profile-img {
+    width: 50px;
+    height: 50px;
+  }
+
+  .profile-emoji {
+    font-size: 24px;
+  }
+
+  .profile-name {
+    font-size: 14px;
+  }
+
+  .box-title {
+    font-size: 11px;
+    padding: 8px;
+  }
+
+  .menu-nav {
+    padding: 8px;
+  }
+
+  .menu-link {
+    padding: 8px 10px;
+    font-size: 12px;
+  }
+
+  .music-player {
+    padding: 10px;
+  }
+
+  .music-album {
+    width: 50px;
+    height: 50px;
+  }
+
+  .music-btn {
+    width: 26px;
+    height: 26px;
+    font-size: 9px;
+  }
+
+  .music-btn.play-btn {
+    width: 32px;
+    height: 32px;
+  }
+
+  .music-volume {
+    display: none;
+  }
+
+  .main-content {
+    padding: 12px;
+    gap: 10px;
+  }
+
+  .content-window {
+    border-radius: 10px;
+  }
+
+  .window-header {
+    padding: 8px 12px;
+  }
+
+  .window-title {
+    font-size: 11px;
+  }
+
+  .window-body {
+    padding: 12px;
+  }
+
+  .welcome-content h1 {
+    font-size: 16px;
+  }
+
+  .ganhome-footer {
+    padding: 15px;
+  }
+
+  .footer-content {
+    font-size: 11px;
+  }
+}
+
+/* Small Mobile - 400px 이하 */
+@media (max-width: 400px) {
+  .ganhome-wrapper {
+    width: 100%;
+    margin: 10px auto;
+    border-radius: 0;
+    border-left: none;
+    border-right: none;
+  }
+
+  .menu-link {
+    padding: 6px 8px;
+    font-size: 11px;
+  }
+
+  .welcome-content h1 {
+    font-size: 14px;
+  }
+}
+
+/* Reduce motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

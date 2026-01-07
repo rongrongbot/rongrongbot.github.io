@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="메롱봇입니다.">
+  <meta name="author" content="Jiyo">
+  <title>☆ rongronglog ☆</title>
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="rongronglog">
+  <meta property="og:description" content="메롱봇입니다.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="rongronglog">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="rongronglog">
+  <meta name="twitter:description" content="메롱봇입니다.">
+
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><text y='14' font-size='14'>&#127775;</text></svg>">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+  <!-- SVG Filter for Pencil Effect -->
+  <svg style="position: absolute; width: 0; height: 0;">
+    <defs>
+      <filter id="pencil-border" x="-5%" y="-5%" width="110%" height="110%">
+        <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="5" result="noise"/>
+        <feDisplacementMap in="SourceGraphic" in2="noise" scale="1" xChannelSelector="R" yChannelSelector="G"/>
+      </filter>
+    </defs>
+  </svg>
+
+  <!-- Background Stars -->
+  <div class="stars-bg" id="starsBg"></div>
+
+  <!-- Shooting Stars Container -->
+  <div class="shooting-stars" id="shootingStars"></div>
+
+  <!-- Main Container - 갠홈 스타일 중앙 고정 -->
+  <div class="ganhome-wrapper">
+
+    <!-- Left Sidebar (동적 로드) -->
+    <aside class="sidebar" id="sidebar"></aside>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+      <!-- Welcome & About Window -->
+      <section class="content-window">
+        <div class="window-header">
+          <span class="window-title">welcome.txt</span>
+          <div class="window-buttons">
+            <span class="win-btn minimize">─</span>
+            <span class="win-btn maximize">□</span>
+            <span class="win-btn close">×</span>
+          </div>
+        </div>
+        <div class="window-body">
+          <div class="welcome-content">
+            <h1>✦ Welcome! ✦</h1>
+            <p class="about-text">
+              안녕하세요! 롱롱봇 혹은 메롱봇 이라는 닉네임으로 활동하고 있는 롱롱입니다.<br/>
+              하고싶었던 여러가지 이야기들을 자유로이 하기 위해서 개인홈을 만들었어요.<br/>
+              일상 이야기, 그리고 책, 전시, 영화 등등.. 다양한 컨텐츠 리뷰 등등이 올라갈 것 같아요.<br/>
+              아직 이렇다 할 내용이 없지만 점점 채워나갈 예정입니다. 모쪼록 잘 부탁드립니다.
+            </p>
+            <div class="welcome-deco">
+              ★ ☆ ★ ☆ ★ ☆ ★
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Recent Posts Window -->
+      <section class="content-window">
+        <div class="window-header">
+          <span class="window-title">recent_posts.txt</span>
+          <div class="window-buttons">
+            <span class="win-btn minimize">─</span>
+            <span class="win-btn maximize">□</span>
+            <span class="win-btn close">×</span>
+          </div>
+        </div>
+        <div class="window-body">
+          <h2>📝 Recent Posts</h2>
+          <div id="recentPosts">
+            <p style="color: var(--text-light); font-size: 13px;">Loading...</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Update Log Window -->
+      <section class="content-window">
+        <div class="window-header">
+          <span class="window-title">update_log.txt</span>
+          <div class="window-buttons">
+            <span class="win-btn minimize">─</span>
+            <span class="win-btn maximize">□</span>
+            <span class="win-btn close">×</span>
+          </div>
+        </div>
+        <div class="window-body">
+          <h2>🔔 Updates</h2>
+          <ul class="update-list">
+            <li><span class="update-date">26.01.06</span> 홈페이지 오픈!</li>
+            <li><span class="update-date">26.01.06</span> 방명록 추가</li>
+          </ul>
+        </div>
+      </section>
+    </main>
+
+  </div>
+
+  <!-- Footer -->
+  <footer class="ganhome-footer">
+    <div class="footer-content">
+      <span class="footer-deco">☆</span>
+      <span>© 2026 rongrongbot</span>
+      <span class="footer-deco">☆</span>
+    </div>
+    <div class="footer-hearts">♡ ♡ ♡</div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/components/sidebar.js"></script>
+  <script src="js/components/posts.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/music-player.js"></script>
+</body>
+</html>
