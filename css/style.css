@@ -25,13 +25,13 @@
   --bg-card: rgba(255, 255, 255, 0.95);
   --bg-card-dark: rgba(40, 20, 25, 0.9);
 
-  /* Accent Colors - Pink & Red */
-  --primary: #ff6b8a;
-  --primary-dark: #e84a6f;
-  --secondary: #ff8fa3;
-  --accent-gold: #ffb347;
-  --accent-pink: #ffb6c1;
-  --accent-red: #ff4757;
+  /* Accent Colors - Warm Autumn */
+  --primary: #bd433e;
+  --primary-dark: #9a3530;
+  --secondary: #dc9960;
+  --accent-gold: #ebc799;
+  --accent-pink: #ebc799;
+  --accent-red: #bd433e;
 
   /* Text */
   --text-dark: #2a2a2a;
