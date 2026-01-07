@@ -106,12 +106,10 @@
 
   .ganhome-wrapper {
     flex-direction: column;
-    width: calc(100% - 30px);
+    width: calc(100% - 32px);
     max-width: 600px;
     min-height: auto;
-    overflow-x: hidden !important;
     margin: 20px auto;
-    box-shadow: 4px 4px 0 rgba(0,0,0,0.15);
   }
 
   /* Sidebar - hidden by default, slide in from left */
@@ -211,9 +209,8 @@
   }
 
   .ganhome-wrapper {
-    width: calc(100% - 24px);
+    width: calc(100% - 28px);
     margin: 12px auto;
-    border-radius: 15px;
   }
 
   .sidebar {
@@ -331,10 +328,8 @@
   }
 
   .ganhome-wrapper {
-    width: calc(100% - 16px);
+    width: calc(100% - 20px);
     margin: 8px auto;
-    border-radius: 12px;
-    box-shadow: 3px 3px 0 rgba(0,0,0,0.15);
   }
 
   .sidebar {
@@ -373,7 +368,12 @@
     display: none !important;
   }
 
+  html {
+    overflow-x: hidden;
+  }
+
   body {
-    overflow-x: hidden !important;
+    overflow-x: hidden;
+    padding: 0 4px;
   }
 }
