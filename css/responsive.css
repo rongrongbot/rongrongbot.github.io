@@ -84,8 +84,8 @@
     display: block;
     position: fixed;
     top: 0;
-    left: 0;
-    width: 100%;
+    left: 280px; /* 사이드바 너비만큼 오른쪽으로 */
+    width: calc(100% - 280px);
     height: 100%;
     background: rgba(0, 0, 0, 0.5);
     z-index: 999;
@@ -186,6 +186,11 @@
 
   .hamburger-line {
     width: 18px;
+  }
+
+  .sidebar-overlay {
+    left: 260px;
+    width: calc(100% - 260px);
   }
 
   .ganhome-wrapper {
@@ -306,6 +311,11 @@
 
   .hamburger-line {
     width: 16px;
+  }
+
+  .sidebar-overlay {
+    left: 240px;
+    width: calc(100% - 240px);
   }
 
   .ganhome-wrapper {
