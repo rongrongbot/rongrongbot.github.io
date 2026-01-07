@@ -55,11 +55,19 @@ function initCategoryEvents() {
                      (!path.includes('/blog/') && !path.includes('/guestbook'));
       const isBlogRoot = path.includes('/blog/') && !path.includes('/posts/');
       const isPostPage = path.includes('/blog/posts/');
+      const isGuestbook = path.includes('/guestbook') || path.includes('guestbook.html');
+
+      const hash = category === 'all' ? '' : '#' + category;
 
       if (isPostPage) {
         // 포스트 페이지에서는 홈으로 이동
-        const hash = category === 'all' ? '' : '#' + category;
         window.location.href = '../../index.html' + hash;
+        return;
+      }
+
+      if (isGuestbook) {
+        // 방명록에서는 홈으로 이동
+        window.location.href = 'index.html' + hash;
         return;
       }
 

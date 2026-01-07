@@ -159,12 +159,15 @@
   }
 
   .sidebar-box {
-    flex: none;
+    flex: none !important;
+    flex-shrink: 0 !important;
     border: 2px solid #333 !important;
-    background: rgba(255,255,255,0.9) !important;
+    border-radius: 12px !important;
+    background: rgba(255,255,255,0.95) !important;
     box-shadow: 2px 2px 0 rgba(0,0,0,0.1) !important;
-    overflow: visible !important;
-    width: 100% !important;
+    overflow: hidden !important;
+    width: calc(100% - 4px) !important;
+    margin: 2px !important;
     box-sizing: border-box !important;
   }
 
@@ -219,10 +222,6 @@
 
   .sidebar-box {
     border-radius: 10px !important;
-    border: 2px solid #333 !important;
-    background: rgba(255,255,255,0.9) !important;
-    box-shadow: 2px 2px 0 rgba(0,0,0,0.1) !important;
-    overflow: visible !important;
   }
 
   .profile-content {
