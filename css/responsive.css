@@ -365,33 +365,10 @@
   }
 }
 
-/* Mobile - 모든 애니메이션 비활성화 */
+/* Mobile - 배경 효과 숨기기 */
 @media (max-width: 850px) {
-  *, *::before, *::after {
-    animation: none !important;
-    transition: none !important;
-  }
-
-  /* 별 배경 숨기기 */
   .stars-bg,
   .shooting-stars {
     display: none !important;
-  }
-
-  /* 메인 콘텐츠 오버플로우 수정 */
-  .main-content {
-    overflow-x: hidden !important;
-    max-width: 100% !important;
-  }
-
-  .content-window {
-    overflow: hidden !important;
-    max-width: 100% !important;
-    word-break: break-word !important;
-  }
-
-  .window-body {
-    overflow-x: hidden !important;
-    max-width: 100% !important;
   }
 }

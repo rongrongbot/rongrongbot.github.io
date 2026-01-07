@@ -750,13 +750,7 @@ body {
   color: white;
 }
 
-/* ============ Pencil-drawn Border Effect ============ */
-/* 연필 느낌의 불규칙한 테두리 */
-.ganhome-wrapper,
-.sidebar-box,
-.content-window {
-  filter: url(#pencil-border);
-}
+/* Pencil effect removed for performance */
 
 /* Window close animation */
 .content-window {
