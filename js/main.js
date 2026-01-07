@@ -18,22 +18,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
 /**
  * iOS Safari viewport height fix
- * visualViewport API로 툴바 변화에 실시간 대응
+ * window.innerHeight 사용 (툴바 포함 전체 높이)
  */
 function initViewportHeight() {
   function setVH() {
-    const vh = (window.visualViewport?.height || window.innerHeight) * 0.01;
+    // innerHeight는 툴바 포함, +50px 여유분 추가
+    const vh = window.innerHeight * 0.01;
+    const vhFull = (window.innerHeight + 50) * 0.01;
     document.documentElement.style.setProperty('--vh', `${vh}px`);
+    document.documentElement.style.setProperty('--vh-full', `${vhFull}px`);
   }
 
   setVH();
 
-  // visualViewport API 지원 시 (iOS Safari)
-  if (window.visualViewport) {
-    window.visualViewport.addEventListener('resize', setVH);
-  }
-
-  // fallback
   window.addEventListener('resize', setVH);
   window.addEventListener('orientationchange', () => setTimeout(setVH, 100));
 }
