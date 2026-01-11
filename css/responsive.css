@@ -57,25 +57,15 @@
     border: none;
     border-radius: 50%;
     cursor: pointer;
-    box-shadow:
-      0 4px 15px rgba(189, 67, 62, 0.25),
-      0 2px 4px rgba(0, 0, 0, 0.1),
-      inset 0 -2px 5px rgba(0, 0, 0, 0.05);
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .hamburger-btn:active {
     transform: scale(0.92);
-    box-shadow:
-      0 2px 8px rgba(189, 67, 62, 0.3),
-      inset 0 2px 5px rgba(0, 0, 0, 0.1);
   }
 
   .hamburger-btn.active {
     background: linear-gradient(145deg, var(--primary) 0%, #e05550 100%);
-    box-shadow:
-      0 4px 20px rgba(189, 67, 62, 0.4),
-      inset 0 -2px 5px rgba(0, 0, 0, 0.1);
   }
 
   .hamburger-line {

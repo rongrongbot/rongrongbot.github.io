@@ -47,8 +47,8 @@
   --font-body: 'ThinRounded', sans-serif;
 
   /* Effects */
-  --box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-  --box-shadow-hover: 0 6px 20px rgba(0, 0, 0, 0.3);
+  --box-shadow: none;
+  --box-shadow-hover: none;
 }
 
 html {
@@ -86,7 +86,6 @@ body {
   border-radius: 20px;
   overflow: hidden;
   border: 3px solid #333;
-  box-shadow: 6px 6px 0 rgba(0,0,0,0.15);
 }
 
 /* ============ Sidebar (좌측 고정) ============ */
@@ -105,7 +104,6 @@ body {
   background: rgba(255,255,255,0.7);
   border-radius: 12px;
   border: 2px solid #333;
-  box-shadow: 3px 3px 0 rgba(0,0,0,0.1);
   overflow: hidden;
 }
 
@@ -136,7 +134,6 @@ body {
   margin: 0 auto 12px;
   border-radius: 50%;
   overflow: hidden;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
 }
 
 .profile-img img {
@@ -430,7 +427,6 @@ body {
   background: #fff;
   border-radius: 12px;
   border: 2px solid #333;
-  box-shadow: 3px 3px 0 rgba(0,0,0,0.1);
   overflow: hidden;
 }
 
