@@ -136,10 +136,11 @@
   .sidebar {
     position: fixed !important;
     top: calc(env(safe-area-inset-top, 0px) + 70px) !important;
-    left: 12px !important;
-    right: 12px !important;
-    width: auto !important;
-    max-width: 400px !important;
+    left: 50% !important;
+    right: auto !important;
+    transform: translateX(-50%) translateY(-15px) scale(0.97);
+    width: 280px !important;
+    max-width: calc(100vw - 32px) !important;
     max-height: calc(70vh - env(safe-area-inset-top, 0px)) !important;
     margin: 0 auto !important;
     overflow-y: auto !important;
@@ -177,7 +178,7 @@
   .sidebar.sidebar-open {
     opacity: 1 !important;
     visibility: visible !important;
-    transform: translateY(0) scale(1) !important;
+    transform: translateX(-50%) translateY(0) scale(1) !important;
     pointer-events: auto !important;
   }
 
@@ -190,10 +191,11 @@
     flex: none !important;
     flex-shrink: 0 !important;
     border: 2px solid #333 !important;
-    border-radius: 16px !important;
+    border-radius: 12px !important;
     background: white !important;
-    box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.08) !important;
-    overflow: hidden !important;
+    box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.1) !important;
+    overflow: visible !important;
+    filter: url(#pencil-border);
     width: calc(100% - 4px) !important;
     margin: 2px !important;
     box-sizing: border-box !important;
@@ -243,15 +245,14 @@
 
   .sidebar {
     top: calc(env(safe-area-inset-top, 0px) + 60px) !important;
-    left: 10px !important;
-    right: 10px !important;
+    width: 260px !important;
     padding: 16px !important;
     gap: 10px !important;
     border-radius: 20px !important;
   }
 
   .sidebar-box {
-    border-radius: 14px !important;
+    border-radius: 10px !important;
   }
 
   .profile-content {
@@ -362,14 +363,13 @@
 
   .sidebar {
     top: calc(env(safe-area-inset-top, 0px) + 54px) !important;
-    left: 8px !important;
-    right: 8px !important;
+    width: 240px !important;
     padding: 14px !important;
     border-radius: 18px !important;
   }
 
   .sidebar-box {
-    border-radius: 12px !important;
+    border-radius: 10px !important;
   }
 
   .main-content {
