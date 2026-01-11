@@ -40,61 +40,70 @@
 
 /* Tablet/Mobile - 850px 이하 */
 @media (max-width: 850px) {
-  /* Hamburger button */
+  /* Hamburger button - 귀여운 원형 버튼 */
   .hamburger-btn {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 5px;
+    gap: 4px;
     position: fixed;
-    top: calc(env(safe-area-inset-top, 0px) + 15px);
-    left: calc(env(safe-area-inset-left, 0px) + 15px);
-    z-index: 1001;
-    width: 44px;
-    height: 44px;
-    background: #fff0f3;
-    border: 2px solid var(--primary);
-    border-radius: 10px;
+    top: calc(env(safe-area-inset-top, 0px) + 12px);
+    left: calc(env(safe-area-inset-left, 0px) + 12px);
+    z-index: 10001;
+    width: 48px;
+    height: 48px;
+    background: linear-gradient(145deg, #fff 0%, #fff0f3 100%);
+    border: none;
+    border-radius: 50%;
     cursor: pointer;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
-    transition: all 0.3s ease;
+    box-shadow:
+      0 4px 15px rgba(189, 67, 62, 0.25),
+      0 2px 4px rgba(0, 0, 0, 0.1),
+      inset 0 -2px 5px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
-  .hamburger-btn:hover {
-    background: var(--primary);
+  .hamburger-btn:active {
+    transform: scale(0.92);
+    box-shadow:
+      0 2px 8px rgba(189, 67, 62, 0.3),
+      inset 0 2px 5px rgba(0, 0, 0, 0.1);
   }
 
-  .hamburger-btn:hover .hamburger-line {
-    background: white;
+  .hamburger-btn.active {
+    background: linear-gradient(145deg, var(--primary) 0%, #e05550 100%);
+    box-shadow:
+      0 4px 20px rgba(189, 67, 62, 0.4),
+      inset 0 -2px 5px rgba(0, 0, 0, 0.1);
   }
 
   .hamburger-line {
-    width: 20px;
-    height: 2px;
+    width: 18px;
+    height: 2.5px;
     background: var(--primary);
-    border-radius: 2px;
-    transition: all 0.3s ease;
+    border-radius: 3px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .hamburger-btn.active .hamburger-line {
+    background: white;
   }
 
   .hamburger-btn.active .hamburger-line:nth-child(1) {
-    transform: rotate(45deg) translate(4px, 4px);
+    transform: rotate(45deg) translate(5px, 5px);
   }
 
   .hamburger-btn.active .hamburger-line:nth-child(2) {
     opacity: 0;
+    transform: scaleX(0);
   }
 
   .hamburger-btn.active .hamburger-line:nth-child(3) {
-    transform: rotate(-45deg) translate(4px, -4px);
+    transform: rotate(-45deg) translate(5px, -5px);
   }
 
-  .hamburger-btn,
-  .hamburger-line {
-    transition: all 0.2s ease !important;
-  }
-
-  /* Sidebar overlay - 드롭다운용 (클릭 감지용) */
+  /* Sidebar overlay - 부드러운 블러 배경 */
   .sidebar-overlay {
     display: block;
     position: fixed;
@@ -102,17 +111,18 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: transparent;
-    z-index: 1050;
+    background: rgba(26, 18, 21, 0.4);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    z-index: 10000;
     opacity: 0;
     visibility: hidden;
-    pointer-events: none;
+    transition: opacity 0.3s ease, visibility 0.3s;
   }
 
   .sidebar-overlay.active {
     opacity: 1;
     visibility: visible;
-    pointer-events: auto;
   }
 
   .ganhome-wrapper {
@@ -122,36 +132,42 @@
     min-height: auto;
   }
 
-  /* Sidebar - 드롭다운 스타일 */
+  /* Sidebar - 귀여운 드롭다운 카드 */
   .sidebar {
     position: fixed !important;
-    top: calc(env(safe-area-inset-top, 0px) + 60px) !important;
-    left: 10px !important;
-    right: 10px !important;
+    top: calc(env(safe-area-inset-top, 0px) + 70px) !important;
+    left: 12px !important;
+    right: 12px !important;
     width: auto !important;
-    max-width: none !important;
-    max-height: 70vh !important;
-    margin: 0 !important;
+    max-width: 400px !important;
+    max-height: calc(70vh - env(safe-area-inset-top, 0px)) !important;
+    margin: 0 auto !important;
     overflow-y: auto !important;
     overflow-x: hidden !important;
-    z-index: 9999 !important;
-    border: 3px solid #333 !important;
-    border-radius: 15px !important;
-    padding: 15px !important;
-    gap: 10px !important;
-    background: #fff0f3 !important;
+    z-index: 10002 !important;
+    border: none !important;
+    border-radius: 24px !important;
+    padding: 20px !important;
+    gap: 12px !important;
+    background: linear-gradient(180deg, #fff 0%, #fff8f9 100%) !important;
     box-sizing: border-box !important;
     display: flex !important;
     flex-direction: column !important;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3) !important;
+    box-shadow:
+      0 20px 60px rgba(0, 0, 0, 0.25),
+      0 8px 20px rgba(189, 67, 62, 0.15),
+      inset 0 1px 0 rgba(255, 255, 255, 0.8) !important;
     scrollbar-width: none;
     -ms-overflow-style: none;
     -webkit-overflow-scrolling: touch;
     /* 드롭다운 애니메이션 */
     opacity: 0;
     visibility: hidden;
-    transform: translateY(-20px);
-    transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s;
+    transform: translateY(-15px) scale(0.97);
+    transition:
+      opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+      transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+      visibility 0.3s;
   }
 
   .sidebar::-webkit-scrollbar {
@@ -161,22 +177,24 @@
   .sidebar.sidebar-open {
     opacity: 1 !important;
     visibility: visible !important;
-    transform: translateY(0) !important;
+    transform: translateY(0) scale(1) !important;
     pointer-events: auto !important;
   }
 
-  /* Sidebar 내부 요소들 클릭 가능하게 */
   .sidebar.sidebar-open * {
     pointer-events: auto;
   }
 
+  /* Sidebar 박스들 - 더 부드러운 디자인 */
   .sidebar-box {
     flex: none !important;
     flex-shrink: 0 !important;
-    border: 2px solid #333 !important;
-    border-radius: 12px !important;
-    background: rgba(255,255,255,0.95) !important;
-    box-shadow: 2px 2px 0 rgba(0,0,0,0.1) !important;
+    border: none !important;
+    border-radius: 16px !important;
+    background: white !important;
+    box-shadow:
+      0 2px 8px rgba(0, 0, 0, 0.06),
+      0 1px 2px rgba(0, 0, 0, 0.04) !important;
     overflow: hidden !important;
     width: calc(100% - 4px) !important;
     margin: 2px !important;
@@ -211,12 +229,13 @@
   .hamburger-btn {
     top: calc(env(safe-area-inset-top, 0px) + 10px);
     left: calc(env(safe-area-inset-left, 0px) + 10px);
-    width: 40px;
-    height: 40px;
+    width: 44px;
+    height: 44px;
   }
 
   .hamburger-line {
-    width: 18px;
+    width: 16px;
+    height: 2px;
   }
 
   .ganhome-wrapper {
@@ -225,16 +244,16 @@
   }
 
   .sidebar {
-    top: calc(env(safe-area-inset-top, 0px) + 55px) !important;
-    left: 8px !important;
-    right: 8px !important;
-    padding: 12px !important;
-    gap: 8px !important;
-    max-height: 75vh !important;
+    top: calc(env(safe-area-inset-top, 0px) + 60px) !important;
+    left: 10px !important;
+    right: 10px !important;
+    padding: 16px !important;
+    gap: 10px !important;
+    border-radius: 20px !important;
   }
 
   .sidebar-box {
-    border-radius: 10px !important;
+    border-radius: 14px !important;
   }
 
   .profile-content {
@@ -246,17 +265,13 @@
     height: 50px;
   }
 
-  .profile-emoji {
-    font-size: 24px;
-  }
-
   .profile-name {
     font-size: 14px;
   }
 
   .box-title {
     font-size: 11px;
-    padding: 8px;
+    padding: 8px 12px;
   }
 
   .menu-nav {
@@ -333,12 +348,13 @@
   .hamburger-btn {
     top: calc(env(safe-area-inset-top, 0px) + 8px);
     left: calc(env(safe-area-inset-left, 0px) + 8px);
-    width: 36px;
-    height: 36px;
+    width: 40px;
+    height: 40px;
   }
 
   .hamburger-line {
-    width: 16px;
+    width: 14px;
+    height: 2px;
   }
 
   .ganhome-wrapper {
@@ -347,11 +363,15 @@
   }
 
   .sidebar {
-    top: calc(env(safe-area-inset-top, 0px) + 50px) !important;
-    left: 6px !important;
-    right: 6px !important;
-    padding: 10px !important;
-    max-height: 80vh !important;
+    top: calc(env(safe-area-inset-top, 0px) + 54px) !important;
+    left: 8px !important;
+    right: 8px !important;
+    padding: 14px !important;
+    border-radius: 18px !important;
+  }
+
+  .sidebar-box {
+    border-radius: 12px !important;
   }
 
   .main-content {
