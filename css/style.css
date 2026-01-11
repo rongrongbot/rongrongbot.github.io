@@ -441,8 +441,23 @@ body {
 .content-window {
   background: #fff;
   border-radius: 12px;
-  border: 2px solid #333;
+  border: none;
   overflow: hidden;
+  position: relative;
+}
+
+/* 테두리 삐뚤빼뚤 효과 */
+.content-window::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border: 2px solid #333;
+  border-radius: 12px;
+  pointer-events: none;
+  filter: url(#pencil-border);
 }
 
 .window-header {
