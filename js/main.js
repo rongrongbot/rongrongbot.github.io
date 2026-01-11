@@ -68,38 +68,102 @@ function initMobileMenu() {
     document.body.appendChild(sidebar);
   }
 
-  // iOS Safari: window.innerHeight로 직접 높이 설정
+  // iOS Safari: visualViewport API 사용
+  function getViewportHeight() {
+    if (window.visualViewport) {
+      return window.visualViewport.height;
+    }
+    return window.innerHeight;
+  }
+
   function setMobileHeights() {
-    const fullHeight = window.innerHeight;
-    overlay.style.height = fullHeight + 'px';
+    const h = getViewportHeight();
+
+    // 오버레이: 인라인 스타일로 모든 속성 강제 설정
+    overlay.style.cssText = `
+      position: fixed !important;
+      top: 0 !important;
+      left: 0 !important;
+      width: 100vw !important;
+      height: ${h}px !important;
+      min-height: ${h}px !important;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 1050;
+      opacity: 0;
+      visibility: hidden;
+    `;
+
+    // 사이드바 높이 설정
     const currentSidebar = document.getElementById('sidebar');
     if (currentSidebar) {
-      currentSidebar.style.height = fullHeight + 'px';
+      currentSidebar.style.setProperty('height', h + 'px', 'important');
+      currentSidebar.style.setProperty('min-height', h + 'px', 'important');
     }
   }
 
-  // 초기 설정 및 리사이즈 대응
+  // 초기 설정
   setMobileHeights();
+
+  // 리사이즈 대응
   window.addEventListener('resize', setMobileHeights);
-  window.addEventListener('orientationchange', () => setTimeout(setMobileHeights, 100));
+  window.addEventListener('orientationchange', () => setTimeout(setMobileHeights, 300));
+
+  // visualViewport 리사이즈 이벤트 (iOS Safari)
+  if (window.visualViewport) {
+    window.visualViewport.addEventListener('resize', setMobileHeights);
+  }
 
   function getSidebar() {
     return document.getElementById('sidebar');
   }
 
   function openMobileMenu() {
-    setMobileHeights(); // 메뉴 열 때 높이 재설정
+    const h = getViewportHeight();
     const sidebar = getSidebar();
-    if (sidebar) sidebar.classList.add('sidebar-open');
-    overlay.classList.add('active');
+
+    // 오버레이 표시
+    overlay.style.cssText = `
+      position: fixed !important;
+      top: 0 !important;
+      left: 0 !important;
+      width: 100vw !important;
+      height: ${h}px !important;
+      min-height: ${h}px !important;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 1050;
+      opacity: 1;
+      visibility: visible;
+    `;
+
+    // 사이드바 표시
+    if (sidebar) {
+      sidebar.style.setProperty('height', h + 'px', 'important');
+      sidebar.classList.add('sidebar-open');
+    }
+
     hamburger.classList.add('active');
     document.body.style.overflow = 'hidden';
   }
 
   function closeMobileMenu() {
+    const h = getViewportHeight();
     const sidebar = getSidebar();
+
+    // 오버레이 숨김
+    overlay.style.cssText = `
+      position: fixed !important;
+      top: 0 !important;
+      left: 0 !important;
+      width: 100vw !important;
+      height: ${h}px !important;
+      min-height: ${h}px !important;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 1050;
+      opacity: 0;
+      visibility: hidden;
+    `;
+
     if (sidebar) sidebar.classList.remove('sidebar-open');
-    overlay.classList.remove('active');
     hamburger.classList.remove('active');
     document.body.style.overflow = '';
   }
