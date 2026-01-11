@@ -148,16 +148,13 @@
     z-index: 10002 !important;
     border: none !important;
     border-radius: 24px !important;
-    padding: 20px !important;
-    gap: 12px !important;
+    padding: 24px !important;
+    gap: 14px !important;
     background: linear-gradient(180deg, #fff 0%, #fff8f9 100%) !important;
     box-sizing: border-box !important;
     display: flex !important;
     flex-direction: column !important;
-    box-shadow:
-      0 20px 60px rgba(0, 0, 0, 0.25),
-      0 8px 20px rgba(189, 67, 62, 0.15),
-      inset 0 1px 0 rgba(255, 255, 255, 0.8) !important;
+    box-shadow: none !important;
     scrollbar-width: none;
     -ms-overflow-style: none;
     -webkit-overflow-scrolling: touch;
