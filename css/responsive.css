@@ -12,10 +12,9 @@
   }
 }
 
-/* Hamburger, overlay, tab bar - hidden on desktop */
+/* Hamburger and overlay - hidden on desktop */
 .hamburger-btn,
-.sidebar-overlay,
-.mobile-tab-bar {
+.sidebar-overlay {
   display: none;
 }
 
@@ -41,46 +40,79 @@
 
 /* Tablet/Mobile - 850px 이하 */
 @media (max-width: 850px) {
-  /* 하단 탭 바 */
-  .mobile-tab-bar {
-    display: flex;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 60px;
-    padding-bottom: env(safe-area-inset-bottom, 0px);
-    background: #fff;
-    border-top: 2px solid #333;
-    z-index: 9999;
-    justify-content: space-around;
-    align-items: center;
-  }
-
-  .tab-item {
+  /* Hamburger button */
+  .hamburger-btn {
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: center;
-    flex: 1;
-    height: 100%;
-    text-decoration: none;
-    color: #666;
-    transition: color 0.2s;
+    align-items: center;
+    gap: 5px;
+    position: fixed;
+    top: calc(env(safe-area-inset-top, 0px) + 15px);
+    left: calc(env(safe-area-inset-left, 0px) + 15px);
+    z-index: 1001;
+    width: 44px;
+    height: 44px;
+    background: #fff0f3;
+    border: 2px solid var(--primary);
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
   }
 
-  .tab-item.active {
-    color: var(--primary, #bd433e);
+  .hamburger-btn:hover {
+    background: var(--primary);
   }
 
-  .tab-icon {
-    font-size: 20px;
-    margin-bottom: 2px;
+  .hamburger-btn:hover .hamburger-line {
+    background: white;
   }
 
-  .tab-label {
-    font-size: 11px;
-    font-family: var(--font-body);
+  .hamburger-line {
+    width: 20px;
+    height: 2px;
+    background: var(--primary);
+    border-radius: 2px;
+    transition: all 0.3s ease;
+  }
+
+  .hamburger-btn.active .hamburger-line:nth-child(1) {
+    transform: rotate(45deg) translate(4px, 4px);
+  }
+
+  .hamburger-btn.active .hamburger-line:nth-child(2) {
+    opacity: 0;
+  }
+
+  .hamburger-btn.active .hamburger-line:nth-child(3) {
+    transform: rotate(-45deg) translate(4px, -4px);
+  }
+
+  .hamburger-btn,
+  .hamburger-line {
+    transition: all 0.2s ease !important;
+  }
+
+  /* Sidebar overlay - 드롭다운용 (클릭 감지용) */
+  .sidebar-overlay {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: transparent;
+    z-index: 1050;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+
+  .sidebar-overlay.active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
   }
 
   .ganhome-wrapper {
@@ -88,34 +120,181 @@
     width: calc(100% - 16px);
     max-width: 600px;
     min-height: auto;
-    margin-bottom: calc(70px + env(safe-area-inset-bottom, 0px)); /* 탭 바 공간 */
   }
 
-  /* 사이드바 숨김 */
+  /* Sidebar - 드롭다운 스타일 */
   .sidebar {
-    display: none !important;
+    position: fixed !important;
+    top: calc(env(safe-area-inset-top, 0px) + 60px) !important;
+    left: 10px !important;
+    right: 10px !important;
+    width: auto !important;
+    max-width: none !important;
+    max-height: 70vh !important;
+    margin: 0 !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    z-index: 9999 !important;
+    border: 3px solid #333 !important;
+    border-radius: 15px !important;
+    padding: 15px !important;
+    gap: 10px !important;
+    background: #fff0f3 !important;
+    box-sizing: border-box !important;
+    display: flex !important;
+    flex-direction: column !important;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3) !important;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    -webkit-overflow-scrolling: touch;
+    /* 드롭다운 애니메이션 */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-20px);
+    transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s;
+  }
+
+  .sidebar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .sidebar.sidebar-open {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: translateY(0) !important;
+    pointer-events: auto !important;
+  }
+
+  /* Sidebar 내부 요소들 클릭 가능하게 */
+  .sidebar.sidebar-open * {
+    pointer-events: auto;
+  }
+
+  .sidebar-box {
+    flex: none !important;
+    flex-shrink: 0 !important;
+    border: 2px solid #333 !important;
+    border-radius: 12px !important;
+    background: rgba(255,255,255,0.95) !important;
+    box-shadow: 2px 2px 0 rgba(0,0,0,0.1) !important;
+    overflow: hidden !important;
+    width: calc(100% - 4px) !important;
+    margin: 2px !important;
+    box-sizing: border-box !important;
+  }
+
+  .profile-box {
+    order: 1;
+  }
+
+  .menu-box {
+    order: 2;
+  }
+
+  .music-box {
+    order: 3;
+  }
+
+  .links-box {
+    order: 4;
   }
 
   .main-content {
     padding: 15px;
+    padding-top: calc(env(safe-area-inset-top, 0px) + 70px); /* Space for hamburger button + safe area */
     gap: 12px;
-  }
-
-  /* 푸터 하단 여백 */
-  .ganhome-footer {
-    margin-bottom: calc(60px + env(safe-area-inset-bottom, 0px));
   }
 }
 
 /* Mobile - 600px 이하 */
 @media (max-width: 600px) {
+  .hamburger-btn {
+    top: calc(env(safe-area-inset-top, 0px) + 10px);
+    left: calc(env(safe-area-inset-left, 0px) + 10px);
+    width: 40px;
+    height: 40px;
+  }
+
+  .hamburger-line {
+    width: 18px;
+  }
+
   .ganhome-wrapper {
     width: calc(100% - 12px);
     margin: 10px auto;
   }
 
+  .sidebar {
+    top: calc(env(safe-area-inset-top, 0px) + 55px) !important;
+    left: 8px !important;
+    right: 8px !important;
+    padding: 12px !important;
+    gap: 8px !important;
+    max-height: 75vh !important;
+  }
+
+  .sidebar-box {
+    border-radius: 10px !important;
+  }
+
+  .profile-content {
+    padding: 12px;
+  }
+
+  .profile-img {
+    width: 50px;
+    height: 50px;
+  }
+
+  .profile-emoji {
+    font-size: 24px;
+  }
+
+  .profile-name {
+    font-size: 14px;
+  }
+
+  .box-title {
+    font-size: 11px;
+    padding: 8px;
+  }
+
+  .menu-nav {
+    padding: 8px;
+  }
+
+  .menu-link {
+    padding: 8px 10px;
+    font-size: 12px;
+  }
+
+  .music-player {
+    padding: 10px;
+  }
+
+  .music-album {
+    width: 50px;
+    height: 50px;
+  }
+
+  .music-btn {
+    width: 26px;
+    height: 26px;
+    font-size: 9px;
+  }
+
+  .music-btn.play-btn {
+    width: 32px;
+    height: 32px;
+  }
+
+  .music-volume {
+    display: none;
+  }
+
   .main-content {
     padding: 12px;
+    padding-top: calc(env(safe-area-inset-top, 0px) + 60px);
     gap: 10px;
   }
 
@@ -141,42 +320,51 @@
 
   .ganhome-footer {
     padding: 15px;
+    padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 15px);
   }
 
   .footer-content {
     font-size: 11px;
   }
-
-  .tab-icon {
-    font-size: 18px;
-  }
-
-  .tab-label {
-    font-size: 10px;
-  }
 }
 
 /* Small Mobile - 400px 이하 */
 @media (max-width: 400px) {
+  .hamburger-btn {
+    top: calc(env(safe-area-inset-top, 0px) + 8px);
+    left: calc(env(safe-area-inset-left, 0px) + 8px);
+    width: 36px;
+    height: 36px;
+  }
+
+  .hamburger-line {
+    width: 16px;
+  }
+
   .ganhome-wrapper {
     width: calc(100% - 8px);
     margin: 8px auto;
   }
 
+  .sidebar {
+    top: calc(env(safe-area-inset-top, 0px) + 50px) !important;
+    left: 6px !important;
+    right: 6px !important;
+    padding: 10px !important;
+    max-height: 80vh !important;
+  }
+
+  .main-content {
+    padding-top: calc(env(safe-area-inset-top, 0px) + 55px);
+  }
+
+  .menu-link {
+    padding: 6px 8px;
+    font-size: 11px;
+  }
+
   .welcome-content h1 {
     font-size: 14px;
-  }
-
-  .mobile-tab-bar {
-    height: 55px;
-  }
-
-  .tab-icon {
-    font-size: 16px;
-  }
-
-  .tab-label {
-    font-size: 9px;
   }
 }
 

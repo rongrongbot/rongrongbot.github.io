@@ -36,48 +36,83 @@ function initViewportHeight() {
 }
 
 /**
- * Mobile bottom tab bar
+ * Mobile hamburger menu
  */
 function initMobileMenu() {
   // Only run on mobile
   if (!isMobile()) return;
 
-  // 사이드바 숨기기
+  // Create hamburger button
+  const hamburger = document.createElement('button');
+  hamburger.className = 'hamburger-btn';
+  hamburger.id = 'hamburgerBtn';
+  hamburger.innerHTML = `
+    <span class="hamburger-line"></span>
+    <span class="hamburger-line"></span>
+    <span class="hamburger-line"></span>
+  `;
+  hamburger.setAttribute('aria-label', '메뉴 열기');
+
+  // Create overlay
+  const overlay = document.createElement('div');
+  overlay.className = 'sidebar-overlay';
+  overlay.id = 'sidebarOverlay';
+
+  // Add to body
+  document.body.appendChild(hamburger);
+  document.body.appendChild(overlay);
+
+  // Move sidebar to body for proper z-index stacking
   const sidebar = document.getElementById('sidebar');
   if (sidebar) {
-    sidebar.style.display = 'none';
+    document.body.appendChild(sidebar);
   }
 
-  // 현재 페이지 감지
-  const path = window.location.pathname;
-  let currentPage = 'home';
-  if (path.includes('guestbook')) currentPage = 'guestbook';
-  else if (path.includes('blog')) currentPage = 'blog';
+  function getSidebar() {
+    return document.getElementById('sidebar');
+  }
 
-  // 경로 계산
-  let basePath = '';
-  if (path.includes('/blog/posts/')) basePath = '../../';
-  else if (path.includes('/blog/')) basePath = '../';
+  function openMobileMenu() {
+    const sidebar = getSidebar();
+    if (sidebar) sidebar.classList.add('sidebar-open');
+    overlay.classList.add('active');
+    hamburger.classList.add('active');
+  }
 
-  // 하단 탭 바 생성
-  const tabBar = document.createElement('nav');
-  tabBar.className = 'mobile-tab-bar';
-  tabBar.innerHTML = `
-    <a href="${basePath}index.html" class="tab-item ${currentPage === 'home' ? 'active' : ''}">
-      <span class="tab-icon">🏠</span>
-      <span class="tab-label">홈</span>
-    </a>
-    <a href="${basePath}blog/index.html" class="tab-item ${currentPage === 'blog' ? 'active' : ''}">
-      <span class="tab-icon">📝</span>
-      <span class="tab-label">기록</span>
-    </a>
-    <a href="${basePath}guestbook.html" class="tab-item ${currentPage === 'guestbook' ? 'active' : ''}">
-      <span class="tab-icon">📮</span>
-      <span class="tab-label">방명록</span>
-    </a>
-  `;
+  function closeMobileMenu() {
+    const sidebar = getSidebar();
+    if (sidebar) sidebar.classList.remove('sidebar-open');
+    overlay.classList.remove('active');
+    hamburger.classList.remove('active');
+  }
 
-  document.body.appendChild(tabBar);
+  // Toggle menu
+  hamburger.addEventListener('click', () => {
+    const sidebar = getSidebar();
+    if (sidebar && sidebar.classList.contains('sidebar-open')) {
+      closeMobileMenu();
+    } else {
+      openMobileMenu();
+    }
+  });
+
+  // Close on overlay click
+  overlay.addEventListener('click', closeMobileMenu);
+
+  // Close on menu link click (use event delegation on document)
+  document.addEventListener('click', (e) => {
+    if (e.target.closest('.menu-link, .category-link') && isMobile()) {
+      setTimeout(closeMobileMenu, 100);
+    }
+  });
+
+  // Close on escape key
+  document.addEventListener('keydown', (e) => {
+    const sidebar = getSidebar();
+    if (e.key === 'Escape' && sidebar?.classList.contains('sidebar-open')) {
+      closeMobileMenu();
+    }
+  });
 }
 
 /**
