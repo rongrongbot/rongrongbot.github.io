@@ -103,7 +103,7 @@ function getSidebarHTML(currentPage, basePath, categories) {
       </div>
       <div class="profile-content">
         <div class="profile-img">
-          <img src="${basePath}images/profile.jpg" alt="profile">
+          <img src="${basePath}images/profile.jpg" alt="profile" loading="lazy" decoding="async">
         </div>
         <div class="profile-name">rongrongbot</div>
         <div class="profile-status">

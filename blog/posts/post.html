@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <meta name="description" content="">
   <title>☆ rongronglog ☆</title>
 
@@ -18,8 +18,55 @@
   <meta name="twitter:description" content="">
 
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><text y='14' font-size='14'>&#128214;</text></svg>">
-  <link rel="stylesheet" href="../../css/style.css">
-  <link rel="stylesheet" href="../../css/responsive.css">
+
+  <!-- Preconnect for external resources -->
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+
+  <!-- Preload critical font -->
+  <link rel="preload" href="https://cdn.jsdelivr.net/gh/projectnoonnu/2511-1@1.0/ThinDungGeunMo.woff2" as="font" type="font/woff2" crossorigin>
+
+  <!-- Critical CSS inline for faster first paint -->
+  <style>
+    @font-face {
+      font-family: 'ThinRounded';
+      src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2511-1@1.0/ThinDungGeunMo.woff2') format('woff2');
+      font-weight: normal;
+      font-display: swap;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg-dark: #1a1215;
+      --primary: #bd433e;
+      --text-white: #fff5f5;
+      --font-title: 'ThinRounded', sans-serif;
+      --font-body: 'ThinRounded', sans-serif;
+    }
+    body {
+      font-family: var(--font-body);
+      background: var(--bg-dark);
+      color: var(--text-white);
+      min-height: 100vh;
+    }
+    .ganhome-wrapper {
+      display: flex;
+      width: 1000px;
+      margin: 40px auto;
+      background: #fff;
+      border-radius: 20px;
+      border: 3px solid #333;
+    }
+    .sidebar { width: 280px; background: #fff0f3; border-right: 3px solid #333; padding: 20px; }
+    .main-content { flex: 1; padding: 20px; background: #fff; }
+  </style>
+
+  <!-- Stylesheets (non-blocking) -->
+  <link rel="stylesheet" href="../../css/style.css" media="print" onload="this.media='all'">
+  <link rel="stylesheet" href="../../css/responsive.css" media="print" onload="this.media='all'">
+  <noscript>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/responsive.css">
+  </noscript>
 </head>
 <body>
   <!-- SVG Filter for Pencil Effect -->
@@ -123,15 +170,16 @@
     <div class="footer-hearts">♡ ♡ ♡</div>
   </footer>
 
-  <!-- Marked.js for Markdown rendering -->
-  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <!-- Marked.js for Markdown rendering (async for faster load) -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js" async></script>
 
-  <script src="../../js/components/sidebar.js"></script>
-  <script src="../../js/components/posts.js"></script>
-  <script src="../../js/main.js"></script>
-  <script src="../../js/music-player.js"></script>
-  <script src="../../js/post-loader.js"></script>
-  <script src="../../js/post-comments.js"></script>
+  <!-- Scripts (defer for non-blocking load) -->
+  <script src="../../js/components/sidebar.js" defer></script>
+  <script src="../../js/components/posts.js" defer></script>
+  <script src="../../js/main.js" defer></script>
+  <script src="../../js/music-player.js" defer></script>
+  <script src="../../js/post-loader.js" defer></script>
+  <script src="../../js/post-comments.js" defer></script>
 
   <style>
     /* Post Styles */

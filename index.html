@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <meta name="description" content="메롱봇입니다.">
   <meta name="author" content="Jiyo">
   <title>☆ rongronglog ☆</title>
@@ -21,9 +21,54 @@
   <!-- Favicon -->
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><text y='14' font-size='14'>&#127775;</text></svg>">
 
-  <!-- Stylesheets -->
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/responsive.css">
+  <!-- Preconnect for external resources -->
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+
+  <!-- Preload critical font -->
+  <link rel="preload" href="https://cdn.jsdelivr.net/gh/projectnoonnu/2511-1@1.0/ThinDungGeunMo.woff2" as="font" type="font/woff2" crossorigin>
+
+  <!-- Critical CSS inline for faster first paint -->
+  <style>
+    @font-face {
+      font-family: 'ThinRounded';
+      src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2511-1@1.0/ThinDungGeunMo.woff2') format('woff2');
+      font-weight: normal;
+      font-display: swap;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg-dark: #1a1215;
+      --primary: #bd433e;
+      --text-white: #fff5f5;
+      --font-title: 'ThinRounded', sans-serif;
+      --font-body: 'ThinRounded', sans-serif;
+    }
+    body {
+      font-family: var(--font-body);
+      background: var(--bg-dark);
+      color: var(--text-white);
+      min-height: 100vh;
+    }
+    .ganhome-wrapper {
+      display: flex;
+      width: 1000px;
+      margin: 40px auto;
+      background: #fff;
+      border-radius: 20px;
+      border: 3px solid #333;
+    }
+    .sidebar { width: 280px; background: #fff0f3; border-right: 3px solid #333; padding: 20px; }
+    .main-content { flex: 1; padding: 20px; background: #fff; }
+  </style>
+
+  <!-- Stylesheets (non-blocking) -->
+  <link rel="stylesheet" href="css/style.css" media="print" onload="this.media='all'">
+  <link rel="stylesheet" href="css/responsive.css" media="print" onload="this.media='all'">
+  <noscript>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+  </noscript>
 </head>
 <body>
   <!-- SVG Filter for Pencil Effect -->
@@ -62,7 +107,7 @@
         </div>
         <div class="window-body">
           <div class="welcome-content">
-            <h1>✦ Welcome! ✦</h1>
+            <h1>✦ 반갑습니다! ✦</h1>
             <p class="about-text">
               안녕하세요! 롱롱봇 혹은 메롱봇 이라는 닉네임으로 활동하고 있는 롱롱입니다.<br/>
               하고싶었던 여러가지 이야기들을 자유로이 하기 위해서 개인홈을 만들었어요.<br/>
@@ -87,9 +132,9 @@
           </div>
         </div>
         <div class="window-body">
-          <h2>📝 Recent Posts</h2>
+          <h2>📝 최근 글</h2>
           <div id="recentPosts">
-            <p style="color: var(--text-light); font-size: 13px;">Loading...</p>
+            <p style="color: var(--text-light); font-size: 13px;">가져오는 중...</p>
           </div>
         </div>
       </section>
@@ -105,10 +150,9 @@
           </div>
         </div>
         <div class="window-body">
-          <h2>🔔 Updates</h2>
+          <h2>🔔 새 소식</h2>
           <ul class="update-list">
-            <li><span class="update-date">26.01.06</span> 홈페이지 오픈!</li>
-            <li><span class="update-date">26.01.06</span> 방명록 추가</li>
+            <li><span class="update-date">26.01.06</span> 홈페이지 오픈</li>
           </ul>
         </div>
       </section>
@@ -126,10 +170,10 @@
     <div class="footer-hearts">♡ ♡ ♡</div>
   </footer>
 
-  <!-- Scripts -->
-  <script src="js/components/sidebar.js"></script>
-  <script src="js/components/posts.js"></script>
-  <script src="js/main.js"></script>
-  <script src="js/music-player.js"></script>
+  <!-- Scripts (defer for non-blocking load) -->
+  <script src="js/components/sidebar.js" defer></script>
+  <script src="js/components/posts.js" defer></script>
+  <script src="js/main.js" defer></script>
+  <script src="js/music-player.js" defer></script>
 </body>
 </html>
