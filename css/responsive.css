@@ -190,15 +190,29 @@
   .sidebar-box {
     flex: none !important;
     flex-shrink: 0 !important;
-    border: 2px solid #333 !important;
+    border: none !important;
     border-radius: 12px !important;
     background: white !important;
     box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.1) !important;
-    overflow: visible !important;
-    filter: url(#pencil-border);
+    overflow: hidden !important;
     width: calc(100% - 4px) !important;
     margin: 2px !important;
     box-sizing: border-box !important;
+    position: relative !important;
+  }
+
+  /* 테두리만 삐뚤빼뚤 효과 */
+  .sidebar-box::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border: 2px solid #333;
+    border-radius: 12px;
+    pointer-events: none;
+    filter: url(#pencil-border);
   }
 
   .profile-box {
