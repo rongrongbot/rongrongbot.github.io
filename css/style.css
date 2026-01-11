@@ -66,68 +66,12 @@ body {
   overflow-x: hidden;
 }
 
-/* ============ Background Stars ============ */
-.stars-bg {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 0;
-}
-
-.star {
-  position: absolute;
-  width: 2px;
-  height: 2px;
-  background: #fff;
-  border-radius: 50%;
-  animation: twinkle 3s ease-in-out infinite;
-}
-
-.star.large {
-  width: 3px;
-  height: 3px;
-  box-shadow: 0 0 6px 1px rgba(255, 255, 255, 0.5);
-}
-
-@keyframes twinkle {
-  0%, 100% { opacity: 0.3; }
-  50% { opacity: 1; }
-}
-
-/* ============ Shooting Stars ============ */
-.shooting-stars {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 1;
-  overflow: hidden;
-}
-
+/* ============ Background Stars (비활성화) ============ */
+.stars-bg,
+.shooting-stars,
+.star,
 .shooting-star {
-  position: absolute;
-  width: 100px;
-  height: 2px;
-  background: linear-gradient(90deg, var(--accent-pink), transparent);
-  border-radius: 50%;
-  animation: shoot 3s ease-out forwards;
-  opacity: 0;
-}
-
-@keyframes shoot {
-  0% {
-    transform: translateX(0) translateY(0) rotate(-45deg);
-    opacity: 1;
-  }
-  100% {
-    transform: translateX(500px) translateY(500px) rotate(-45deg);
-    opacity: 0;
-  }
+  display: none !important;
 }
 
 /* ============ Main Wrapper - 이분할 레이아웃 ============ */
