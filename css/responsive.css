@@ -94,23 +94,25 @@
     transition: all 0.2s ease !important;
   }
 
-  /* Sidebar overlay */
+  /* Sidebar overlay - 드롭다운용 (클릭 감지용) */
   .sidebar-overlay {
     display: block;
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-    /* height는 JS에서 window.innerHeight로 설정 */
-    background: rgba(0, 0, 0, 0.5);
+    right: 0;
+    bottom: 0;
+    background: transparent;
     z-index: 1050;
     opacity: 0;
     visibility: hidden;
+    pointer-events: none;
   }
 
   .sidebar-overlay.active {
     opacity: 1;
     visibility: visible;
+    pointer-events: auto;
   }
 
   .ganhome-wrapper {
@@ -120,42 +122,46 @@
     min-height: auto;
   }
 
-  /* Sidebar - hidden by default, slide in from left */
+  /* Sidebar - 드롭다운 스타일 */
   .sidebar {
     position: fixed !important;
-    top: 0 !important;
-    left: 0 !important;
-    width: 75vw !important;
-    max-width: 280px !important;
-    /* height는 JS에서 window.innerHeight로 설정 */
+    top: calc(env(safe-area-inset-top, 0px) + 60px) !important;
+    left: 10px !important;
+    right: 10px !important;
+    width: auto !important;
+    max-width: none !important;
+    max-height: 70vh !important;
     margin: 0 !important;
     overflow-y: auto !important;
     overflow-x: hidden !important;
     z-index: 9999 !important;
-    border: none !important;
-    border-right: 3px solid #333 !important;
-    border-radius: 0 !important;
+    border: 3px solid #333 !important;
+    border-radius: 15px !important;
     padding: 15px !important;
-    padding-top: calc(env(safe-area-inset-top, 0px) + 15px) !important;
-    padding-left: calc(env(safe-area-inset-left, 0px) + 15px) !important;
-    padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 50px) !important;
     gap: 10px !important;
-    transform: translateX(-100%);
     background: #fff0f3 !important;
     box-sizing: border-box !important;
     display: flex !important;
     flex-direction: column !important;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3) !important;
     scrollbar-width: none;
     -ms-overflow-style: none;
     -webkit-overflow-scrolling: touch;
+    /* 드롭다운 애니메이션 */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-20px);
+    transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s;
   }
 
   .sidebar::-webkit-scrollbar {
-    display: none; /* Chrome/Safari/Opera */
+    display: none;
   }
 
   .sidebar.sidebar-open {
-    transform: translateX(0) !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: translateY(0) !important;
     pointer-events: auto !important;
   }
 
@@ -219,10 +225,12 @@
   }
 
   .sidebar {
-    width: 70vw !important;
-    max-width: 260px !important;
+    top: calc(env(safe-area-inset-top, 0px) + 55px) !important;
+    left: 8px !important;
+    right: 8px !important;
     padding: 12px !important;
     gap: 8px !important;
+    max-height: 75vh !important;
   }
 
   .sidebar-box {
@@ -339,9 +347,11 @@
   }
 
   .sidebar {
-    width: 65vw !important;
-    max-width: 240px !important;
+    top: calc(env(safe-area-inset-top, 0px) + 50px) !important;
+    left: 6px !important;
+    right: 6px !important;
     padding: 10px !important;
+    max-height: 80vh !important;
   }
 
   .main-content {
