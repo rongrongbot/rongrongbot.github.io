@@ -68,11 +68,27 @@ function initMobileMenu() {
     document.body.appendChild(sidebar);
   }
 
+  // iOS Safari: window.innerHeight로 직접 높이 설정
+  function setMobileHeights() {
+    const fullHeight = window.innerHeight;
+    overlay.style.height = fullHeight + 'px';
+    const currentSidebar = document.getElementById('sidebar');
+    if (currentSidebar) {
+      currentSidebar.style.height = fullHeight + 'px';
+    }
+  }
+
+  // 초기 설정 및 리사이즈 대응
+  setMobileHeights();
+  window.addEventListener('resize', setMobileHeights);
+  window.addEventListener('orientationchange', () => setTimeout(setMobileHeights, 100));
+
   function getSidebar() {
     return document.getElementById('sidebar');
   }
 
   function openMobileMenu() {
+    setMobileHeights(); // 메뉴 열 때 높이 재설정
     const sidebar = getSidebar();
     if (sidebar) sidebar.classList.add('sidebar-open');
     overlay.classList.add('active');
