@@ -27,6 +27,16 @@
         "회고"
       ],
       "excerpt": "지난 한 해를 돌아보며"
+    },
+    {
+      "id": "cf1072",
+      "title": "Codeforces Round 1072 (Div. 3) 후기",
+      "date": "2026.01.13",
+      "category": "ps",
+      "tags": [
+        "codeforces"
+      ],
+      "excerpt": "Codeforces Round 1072 (Div. 3)"
     }
   ]
 }
