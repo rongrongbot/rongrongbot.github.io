@@ -129,7 +129,7 @@
     left: 50% !important;
     right: auto !important;
     transform: translateX(-50%) translateY(-15px) scale(0.97);
-    width: 280px !important;
+    width: 320px !important;
     max-width: calc(100vw - 32px) !important;
     max-height: calc(70vh - env(safe-area-inset-top, 0px)) !important;
     margin: 0 auto !important;
@@ -138,7 +138,7 @@
     z-index: 10002 !important;
     border: none !important;
     border-radius: 24px !important;
-    padding: 24px !important;
+    padding: 28px !important;
     gap: 14px !important;
     background: linear-gradient(180deg, #fff 0%, #fff8f9 100%) !important;
     box-sizing: border-box !important;
@@ -173,6 +173,11 @@
     pointer-events: auto;
   }
 
+  /* 이분할 선 숨기기 */
+  .sidebar::after {
+    display: none !important;
+  }
+
   /* Sidebar 박스들 */
   .sidebar-box {
     flex: none !important;
@@ -182,8 +187,8 @@
     background: white !important;
     box-shadow: none !important;
     overflow: hidden !important;
-    width: calc(100% - 4px) !important;
-    margin: 2px !important;
+    width: 100% !important;
+    margin: 0 !important;
     box-sizing: border-box !important;
     position: relative !important;
   }
@@ -246,9 +251,9 @@
 
   .sidebar {
     top: calc(env(safe-area-inset-top, 0px) + 60px) !important;
-    width: 260px !important;
-    padding: 16px !important;
-    gap: 10px !important;
+    width: 300px !important;
+    padding: 24px !important;
+    gap: 12px !important;
     border-radius: 20px !important;
   }
 
@@ -364,8 +369,9 @@
 
   .sidebar {
     top: calc(env(safe-area-inset-top, 0px) + 54px) !important;
-    width: 240px !important;
-    padding: 14px !important;
+    width: 280px !important;
+    padding: 20px !important;
+    gap: 10px !important;
     border-radius: 18px !important;
   }
 
