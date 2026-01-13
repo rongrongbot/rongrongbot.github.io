@@ -141,37 +141,6 @@ function getSidebarHTML(currentPage, basePath, categories) {
       </nav>
     </div>
 
-    <!-- Music Player Box -->
-    <div class="sidebar-box music-box">
-      <div class="box-title">
-        <span class="deco">♪</span> Music <span class="deco">♪</span>
-      </div>
-      <div class="music-player" id="musicPlayer">
-        <div class="music-album">
-          <span class="album-icon">💿</span>
-        </div>
-        <div class="music-info">
-          <div class="track-title" id="trackTitle">No track</div>
-          <div class="track-status" id="trackStatus">PAUSED</div>
-        </div>
-        <div class="music-progress">
-          <div class="progress-bar" id="progressBar"></div>
-        </div>
-        <div class="music-time">
-          <span id="currentTime">0:00</span> / <span id="duration">0:00</span>
-        </div>
-        <div class="music-controls">
-          <button class="music-btn" id="prevBtn">◀◀</button>
-          <button class="music-btn play-btn" id="playBtn">▶</button>
-          <button class="music-btn" id="nextBtn">▶▶</button>
-        </div>
-        <div class="music-volume">
-          <span class="volume-icon">🔊</span>
-          <input type="range" id="volumeSlider" min="0" max="100" value="70">
-        </div>
-      </div>
-    </div>
-
     <!-- Links Box -->
     <div class="sidebar-box links-box">
       <div class="box-title">

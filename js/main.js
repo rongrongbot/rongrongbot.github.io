@@ -272,7 +272,7 @@ function initMenuEffects() {
 }
 
 /**
- * Window controls (close button)
+ * Window controls (close, maximize buttons)
  */
 function initWindowControls() {
   const closeButtons = document.querySelectorAll('.win-btn.close');
@@ -289,6 +289,20 @@ function initWindowControls() {
           window.classList.add('closed');
           window.classList.remove('closing');
         }, 300);
+      }
+    });
+  });
+
+  // Maximize button - toggle fullscreen
+  const maximizeButtons = document.querySelectorAll('.win-btn.maximize');
+
+  maximizeButtons.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      const window = btn.closest('.content-window');
+      if (window) {
+        window.classList.toggle('maximized');
+        // Change button icon
+        btn.textContent = window.classList.contains('maximized') ? '❐' : '□';
       }
     });
   });
