@@ -1,0 +1,64 @@
+{
+  "categories": [
+    {
+      "id": "daily",
+      "name": "일상"
+    },
+    {
+      "id": "ps",
+      "name": "PS"
+    },
+    {
+      "id": "books",
+      "name": "독서"
+    },
+    {
+      "id": "food",
+      "name": "미식"
+    },
+    {
+      "id": "miscellany",
+      "name": "선집"
+    }
+  ],
+  "posts": [
+    {
+      "id": "20260217",
+      "title": "고통을 보지 않으면 해탈에 대해 알 수 없다",
+      "date": "2026.02.17",
+      "category": "miscellany",
+      "tags": [],
+      "excerpt": "20260217"
+    },
+    {
+      "id": "dump1",
+      "title": "롱상",
+      "date": "2026.02.15",
+      "category": "daily",
+      "tags": [
+        "daily"
+      ],
+      "excerpt": "dump1"
+    },
+    {
+      "id": "cf1072",
+      "title": "Codeforces Round 1072 (Div. 3) 후기",
+      "date": "2026.01.13",
+      "category": "ps",
+      "tags": [
+        "codeforces"
+      ],
+      "excerpt": "Codeforces Round 1072 (Div. 3)"
+    },
+    {
+      "id": "2025-review",
+      "title": "2025년 회고",
+      "date": "2026.01.07",
+      "category": "daily",
+      "tags": [
+        "회고"
+      ],
+      "excerpt": "지난 한 해를 돌아보며"
+    }
+  ]
+}

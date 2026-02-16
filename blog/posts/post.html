@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="description" content="">
+  <title>☆ rongronglog ☆</title>
+
+  <!-- Open Graph (동적으로 업데이트) -->
+  <meta property="og:title" content="">
+  <meta property="og:description" content="">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="rongronglog">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="">
+  <meta name="twitter:description" content="">
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><text y='14' font-size='14'>&#128214;</text></svg>">
+
+  <!-- Preconnect for external resources -->
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+
+  <!-- Preload critical font -->
+  <link rel="preload" href="https://cdn.jsdelivr.net/gh/projectnoonnu/2511-1@1.0/ThinDungGeunMo.woff2" as="font" type="font/woff2" crossorigin>
+
+  <!-- Critical CSS inline for faster first paint -->
+  <style>
+    @font-face {
+      font-family: 'ThinRounded';
+      src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2511-1@1.0/ThinDungGeunMo.woff2') format('woff2');
+      font-weight: normal;
+      font-display: swap;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg-dark: #1a1215;
+      --primary: #bd433e;
+      --text-white: #fff5f5;
+      --font-title: 'ThinRounded', sans-serif;
+      --font-body: 'ThinRounded', sans-serif;
+    }
+    body {
+      font-family: var(--font-body);
+      background: var(--bg-dark);
+      color: var(--text-white);
+      min-height: 100vh;
+    }
+    .ganhome-wrapper {
+      display: flex;
+      width: 1000px;
+      margin: 40px auto;
+      background: #fff;
+      border-radius: 20px;
+      border: 3px solid #333;
+    }
+    .sidebar { width: 280px; background: #fff0f3; border-right: 3px solid #333; padding: 20px; }
+    .main-content { flex: 1; padding: 20px; background: #fff; }
+  </style>
+
+  <!-- Stylesheets (non-blocking) -->
+  <link rel="stylesheet" href="../../css/style.css" media="print" onload="this.media='all'">
+  <link rel="stylesheet" href="../../css/responsive.css" media="print" onload="this.media='all'">
+  <noscript>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/responsive.css">
+  </noscript>
+</head>
+<body>
+  <!-- SVG Filter for Pencil Effect -->
+  <svg style="position: absolute; width: 0; height: 0;">
+    <defs>
+      <filter id="pencil-border" x="-5%" y="-5%" width="110%" height="110%">
+        <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="5" result="noise"/>
+        <feDisplacementMap in="SourceGraphic" in2="noise" scale="3" xChannelSelector="R" yChannelSelector="G"/>
+      </filter>
+    </defs>
+  </svg>
+
+  <!-- Background Stars -->
+  <div class="stars-bg" id="starsBg"></div>
+
+  <!-- Shooting Stars Container -->
+  <div class="shooting-stars" id="shootingStars"></div>
+
+  <!-- Main Container -->
+  <div class="ganhome-wrapper">
+
+    <!-- Left Sidebar (동적 로드) -->
+    <aside class="sidebar" id="sidebar"></aside>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+      <!-- Blog Post Window -->
+      <section class="content-window">
+        <div class="window-header">
+          <span class="window-title" id="windowTitle">loading.txt</span>
+          <div class="window-buttons">
+            <span class="win-btn minimize">─</span>
+            <span class="win-btn maximize">□</span>
+            <span class="win-btn close">×</span>
+          </div>
+        </div>
+        <div class="window-body">
+          <!-- Post Header -->
+          <div class="post-header">
+            <div class="post-meta">
+              <span class="post-date" id="postDate"></span>
+              <div class="post-tags" id="postTags"></div>
+            </div>
+            <h1 class="post-title" id="postTitle">Loading...</h1>
+          </div>
+
+          <!-- Post Content (마크다운 렌더링) -->
+          <div class="post-content" id="postContent">
+            <p style="color: var(--text-light);">Loading...</p>
+          </div>
+
+          <!-- Navigation -->
+          <div class="post-nav">
+            <a href="../index.html" class="nav-btn">← All Posts</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Comments Section -->
+      <section class="content-window">
+        <div class="window-header">
+          <span class="window-title">comments.txt</span>
+          <div class="window-buttons">
+            <span class="win-btn minimize">─</span>
+            <span class="win-btn maximize">□</span>
+            <span class="win-btn close">×</span>
+          </div>
+        </div>
+        <div class="window-body">
+          <h2>💬 댓글 <span id="commentCount">(0)</span></h2>
+
+          <!-- Comment Form -->
+          <form id="commentForm" class="comment-form">
+            <div class="form-row">
+              <input type="text" id="commentName" placeholder="이름 (선택)" maxlength="50">
+            </div>
+            <div class="form-row">
+              <textarea id="commentMessage" placeholder="댓글을 남겨주세요" maxlength="500" required></textarea>
+              <div class="char-count"><span id="commentCharCount">0</span>/500</div>
+            </div>
+            <button type="submit" id="commentSubmitBtn" class="submit-btn">댓글 등록</button>
+          </form>
+
+          <!-- Comments List -->
+          <div id="commentsList" class="comments-list">
+            <p class="loading-comments">댓글을 불러오는 중...</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+  </div>
+
+  <!-- Footer -->
+  <footer class="ganhome-footer">
+    <div class="footer-content">
+      <span class="footer-deco">☆</span>
+      <span>© 2026 rongrongbot</span>
+      <span class="footer-deco">☆</span>
+    </div>
+    <div class="footer-hearts">♡ ♡ ♡</div>
+  </footer>
+
+  <!-- Marked.js for Markdown rendering (async for faster load) -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js" async></script>
+
+  <!-- Scripts (defer for non-blocking load) -->
+  <script src="../../js/components/sidebar.js" defer></script>
+  <script src="../../js/components/posts.js" defer></script>
+  <script src="../../js/main.js" defer></script>
+  <script src="../../js/music-player.js" defer></script>
+  <script src="../../js/post-loader.js" defer></script>
+  <script src="../../js/post-comments.js" defer></script>
+
+  <style>
+    /* Post Styles */
+    .post-header {
+      margin-bottom: 20px;
+      padding-bottom: 15px;
+      border-bottom: 1px dashed var(--border-light);
+    }
+
+    .post-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .post-date {
+      font-size: 11px;
+      color: var(--text-light);
+    }
+
+    .post-tags {
+      display: flex;
+      gap: 6px;
+    }
+
+    .tag {
+      font-size: 10px;
+      background: var(--primary);
+      color: white;
+      padding: 2px 8px;
+      border-radius: 10px;
+    }
+
+    .post-title {
+      font-family: var(--font-title);
+      font-size: 18px;
+      color: var(--primary-dark);
+    }
+
+    .post-content {
+      line-height: 1.8;
+    }
+
+    .post-content p {
+      margin-bottom: 12px;
+      font-size: 13px;
+      color: var(--text-dark);
+    }
+
+    .post-content h1 {
+      display: none; /* 마크다운 h1은 숨김 (제목은 별도 표시) */
+    }
+
+    .post-content h2 {
+      font-family: var(--font-title);
+      font-size: 15px;
+      color: var(--primary-dark);
+      margin: 20px 0 12px;
+    }
+
+    .post-content h3 {
+      font-family: var(--font-title);
+      font-size: 14px;
+      color: var(--primary-dark);
+      margin: 16px 0 10px;
+    }
+
+    .post-content ul, .post-content ol {
+      margin: 0 0 12px 20px;
+    }
+
+    .post-content li {
+      font-size: 13px;
+      color: var(--text-dark);
+      margin-bottom: 5px;
+    }
+
+    .post-content blockquote {
+      border-left: 3px solid var(--primary);
+      padding-left: 15px;
+      margin: 15px 0;
+      color: var(--text-light);
+      font-style: italic;
+    }
+
+    .post-content code {
+      background: rgba(0,0,0,0.05);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 12px;
+    }
+
+    .post-content pre {
+      background: #2a2a2a;
+      color: #f0f0f0;
+      padding: 15px;
+      border-radius: 8px;
+      overflow-x: auto;
+      margin: 15px 0;
+    }
+
+    .post-content pre code {
+      background: none;
+      padding: 0;
+      color: inherit;
+    }
+
+    .post-content img {
+      max-width: 100%;
+      border-radius: 8px;
+      margin: 15px 0;
+    }
+
+    .post-nav {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+      padding-top: 15px;
+      border-top: 1px dashed var(--border-light);
+    }
+
+    .nav-btn {
+      font-family: var(--font-title);
+      font-size: 11px;
+      color: var(--primary-dark);
+      text-decoration: none;
+      padding: 6px 12px;
+      background: rgba(255, 107, 138, 0.1);
+      border-radius: 6px;
+      transition: all 0.2s ease;
+    }
+
+    .nav-btn:hover {
+      background: var(--primary);
+      color: white;
+    }
+
+    .post-ending {
+      text-align: center;
+      margin-top: 25px;
+      font-size: 14px;
+      color: var(--primary);
+    }
+
+    /* Comment Styles */
+    .comment-form {
+      margin-bottom: 20px;
+      padding-bottom: 20px;
+      border-bottom: 1px dashed var(--border-light);
+    }
+
+    .form-row {
+      margin-bottom: 10px;
+    }
+
+    .comment-form input,
+    .comment-form textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid var(--border-light);
+      border-radius: 8px;
+      font-family: var(--font-body);
+      font-size: 13px;
+      background: #fff;
+      color: var(--text-dark);
+    }
+
+    .comment-form input:focus,
+    .comment-form textarea:focus {
+      outline: none;
+      border-color: var(--primary);
+    }
+
+    .comment-form textarea {
+      min-height: 80px;
+      resize: vertical;
+    }
+
+    .char-count {
+      text-align: right;
+      font-size: 11px;
+      color: var(--text-light);
+      margin-top: 4px;
+    }
+
+    .submit-btn {
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-family: var(--font-title);
+      font-size: 12px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .submit-btn:hover {
+      background: var(--primary-dark);
+    }
+
+    .submit-btn:disabled {
+      background: var(--text-light);
+      cursor: not-allowed;
+    }
+
+    .comments-list {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .comment-item {
+      padding: 12px;
+      background: rgba(0,0,0,0.02);
+      border-radius: 8px;
+    }
+
+    .comment-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+
+    .comment-name {
+      font-weight: bold;
+      font-size: 13px;
+      color: var(--primary-dark);
+    }
+
+    .comment-date {
+      font-size: 11px;
+      color: var(--text-light);
+    }
+
+    .comment-message {
+      font-size: 13px;
+      color: var(--text-dark);
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    .no-comments,
+    .loading-comments,
+    .error-message {
+      font-size: 13px;
+      color: var(--text-light);
+      text-align: center;
+      padding: 20px;
+    }
+  </style>
+</body>
+</html>

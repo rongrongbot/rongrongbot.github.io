@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="description" content="방명록에 흔적을 남겨주세요!">
+  <title>☆ 방명록 - rongronglog ☆</title>
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="방명록 - rongronglog">
+  <meta property="og:description" content="방명록에 흔적을 남겨주세요!">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="rongronglog">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="방명록 - rongronglog">
+  <meta name="twitter:description" content="방명록에 흔적을 남겨주세요!">
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><text y='14' font-size='14'>&#128221;</text></svg>">
+
+  <!-- Preconnect for external resources -->
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+
+  <!-- Preload critical font -->
+  <link rel="preload" href="https://cdn.jsdelivr.net/gh/projectnoonnu/2511-1@1.0/ThinDungGeunMo.woff2" as="font" type="font/woff2" crossorigin>
+
+  <!-- Critical CSS inline for faster first paint -->
+  <style>
+    @font-face {
+      font-family: 'ThinRounded';
+      src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2511-1@1.0/ThinDungGeunMo.woff2') format('woff2');
+      font-weight: normal;
+      font-display: swap;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg-dark: #1a1215;
+      --primary: #bd433e;
+      --text-white: #fff5f5;
+      --font-title: 'ThinRounded', sans-serif;
+      --font-body: 'ThinRounded', sans-serif;
+    }
+    body {
+      font-family: var(--font-body);
+      background: var(--bg-dark);
+      color: var(--text-white);
+      min-height: 100vh;
+    }
+    .ganhome-wrapper {
+      display: flex;
+      width: 1000px;
+      margin: 40px auto;
+      background: #fff;
+      border-radius: 20px;
+      border: 3px solid #333;
+    }
+    .sidebar { width: 280px; background: #fff0f3; border-right: 3px solid #333; padding: 20px; }
+    .main-content { flex: 1; padding: 20px; background: #fff; }
+  </style>
+
+  <!-- Stylesheets (non-blocking) -->
+  <link rel="stylesheet" href="css/style.css" media="print" onload="this.media='all'">
+  <link rel="stylesheet" href="css/responsive.css" media="print" onload="this.media='all'">
+  <link rel="stylesheet" href="css/guestbook.css" media="print" onload="this.media='all'">
+  <noscript>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/guestbook.css">
+  </noscript>
+</head>
+<body>
+  <!-- SVG Filter for Pencil Effect -->
+  <svg style="position: absolute; width: 0; height: 0;">
+    <defs>
+      <filter id="pencil-border" x="-5%" y="-5%" width="110%" height="110%">
+        <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="5" result="noise"/>
+        <feDisplacementMap in="SourceGraphic" in2="noise" scale="3" xChannelSelector="R" yChannelSelector="G"/>
+      </filter>
+    </defs>
+  </svg>
+
+  <!-- Background Stars -->
+  <div class="stars-bg" id="starsBg"></div>
+
+  <!-- Shooting Stars Container -->
+  <div class="shooting-stars" id="shootingStars"></div>
+
+  <!-- Main Container -->
+  <div class="ganhome-wrapper">
+
+    <!-- Left Sidebar (동적 로드) -->
+    <aside class="sidebar" id="sidebar"></aside>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+      <!-- Guestbook Header Window -->
+      <section class="content-window">
+        <div class="window-header">
+          <span class="window-title">guestbook.txt</span>
+          <div class="window-buttons">
+            <span class="win-btn minimize">─</span>
+            <span class="win-btn maximize">□</span>
+            <span class="win-btn close">×</span>
+          </div>
+        </div>
+        <div class="window-body">
+          <div class="welcome-content">
+            <h1>✦ 방명록 ✦</h1>
+            <p class="welcome-text">
+              방명록에 흔적을 남겨주세요!
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Comment Form Window -->
+      <section class="content-window">
+        <div class="window-header">
+          <span class="window-title">write_message.txt</span>
+          <div class="window-buttons">
+            <span class="win-btn minimize">─</span>
+            <span class="win-btn maximize">□</span>
+            <span class="win-btn close">×</span>
+          </div>
+        </div>
+        <div class="window-body">
+          <h2>✏️ 메시지 남기기</h2>
+          <form id="guestbookForm" class="guestbook-form">
+            <div class="form-group">
+              <label class="form-label" for="name">이름</label>
+              <input type="text" id="name" name="name" class="form-input" placeholder="익명" maxlength="50">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="message">메시지 *</label>
+              <textarea id="message" name="message" class="form-textarea" placeholder="하고 싶은 말을 남겨주세요!" maxlength="500" required></textarea>
+              <div class="char-count">
+                <span id="charCount">0</span>/500
+              </div>
+            </div>
+            <button type="submit" class="submit-btn" id="submitBtn">
+              ♡ 등록하기
+            </button>
+          </form>
+        </div>
+      </section>
+
+      <!-- Comments List Window -->
+      <section class="content-window">
+        <div class="window-header">
+          <span class="window-title">messages.txt</span>
+          <div class="window-buttons">
+            <span class="win-btn minimize">─</span>
+            <span class="win-btn maximize">□</span>
+            <span class="win-btn close">×</span>
+          </div>
+        </div>
+        <div class="window-body">
+          <h2>💬 메시지 <span class="comment-count" id="commentCount">(0)</span></h2>
+          <div id="commentsList" class="comments-list">
+            <div class="loading-message">
+              ✧ 메시지를 불러오는 중...
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+  </div>
+
+  <!-- Admin Modal -->
+  <div id="adminModal" class="modal" style="display: none;">
+    <div class="modal-overlay"></div>
+    <div class="modal-content content-window">
+      <div class="window-header">
+        <span class="window-title">admin.txt</span>
+        <div class="window-buttons">
+          <span class="win-btn close" id="cancelDelete">×</span>
+        </div>
+      </div>
+      <div class="window-body">
+        <h3>Admin Delete</h3>
+        <p style="font-size: 13px; margin-bottom: 15px;">Enter admin password to delete this comment:</p>
+        <input type="password" id="adminPassword" class="form-input" placeholder="Password">
+        <div style="display: flex; gap: 10px; margin-top: 15px;">
+          <button class="submit-btn" id="confirmDelete">Delete</button>
+          <button class="submit-btn secondary" onclick="document.getElementById('adminModal').style.display='none'">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="ganhome-footer">
+    <div class="footer-content">
+      <span class="footer-deco">☆</span>
+      <span>© 2024 rongrongbot's Home</span>
+      <span class="footer-deco">☆</span>
+    </div>
+    <div class="footer-hearts">♡ ♡ ♡</div>
+  </footer>
+
+  <!-- Scripts (defer for non-blocking load) -->
+  <script src="js/components/sidebar.js" defer></script>
+  <script src="js/main.js" defer></script>
+  <script src="js/music-player.js" defer></script>
+  <script src="js/guestbook.js" defer></script>
+</body>
+</html>
