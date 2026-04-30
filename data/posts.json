@@ -23,52 +23,14 @@
   ],
   "posts": [
     {
-      "id": "20260217",
-      "title": "고통을 보지 않으면 해탈에 대해 알 수 없다",
-      "date": "2026.02.17",
+      "id": "사적 제재",
+      "title": "사적 제재",
+      "date": "2026.04.30",
       "category": "miscellany",
-      "tags": "",
-      "excerpt": "20260217"
-    },
-    {
-      "id": "dump1",
-      "title": "롱상 1",
-      "date": "2026.02.15",
-      "category": "daily",
       "tags": [
-        "daily"
+        "가치"
       ],
-      "excerpt": "dump1"
-    },
-    {
-      "id": "osaka",
-      "title": "오사카 여행기",
-      "date": "2026.02.14",
-      "category": "daily",
-      "tags": [
-        "여행"
-      ],
-      "excerpt": "osaka"
-    },
-    {
-      "id": "cf1072",
-      "title": "Codeforces Round 1072 (Div. 3) 후기",
-      "date": "2026.01.13",
-      "category": "ps",
-      "tags": [
-        "codeforces"
-      ],
-      "excerpt": "Codeforces Round 1072 (Div. 3)"
-    },
-    {
-      "id": "2025-review",
-      "title": "2025년 회고",
-      "date": "2026.01.07",
-      "category": "daily",
-      "tags": [
-        "회고"
-      ],
-      "excerpt": "지난 한 해를 돌아보며"
+      "excerpt": "20260430"
     }
   ]
 }
