@@ -141,18 +141,6 @@ function getSidebarHTML(currentPage, basePath, categories) {
         </a>
       </nav>
     </div>
-
-    <!-- Links Box -->
-    <div class="sidebar-box links-box">
-      <div class="box-title">
-        <span class="deco">☆</span> Links <span class="deco">☆</span>
-      </div>
-      <div class="link-icons">
-        <a href="#" class="link-icon" title="Email">✉️</a>
-        <a href="#" class="link-icon" title="GitHub">💻</a>
-        <a href="#" class="link-icon" title="Twitter">🐦</a>
-      </div>
-    </div>
   `;
 }
 
