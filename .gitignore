@@ -27,3 +27,8 @@ npm-debug.log*
 # Temp files
 *.tmp
 *.temp
+
+# Obsidian
+.obsidian/
+data/posts/_drafts/
+data/posts/_*.md

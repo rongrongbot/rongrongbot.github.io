@@ -62,6 +62,9 @@ def build_posts():
         return
 
     for md_file in POSTS_DIR.glob('*.md'):
+        # _drafts/ 등 하위 폴더는 자동 제외 (top-level만 스캔)
+        if md_file.name.startswith('_'):
+            continue
         print(f"처리 중: {md_file.name}")
 
         with open(md_file, 'r', encoding='utf-8') as f:

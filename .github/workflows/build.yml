@@ -1,0 +1,41 @@
+name: Build posts.json
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'data/posts/**.md'
+      - 'build.py'
+      - '.github/workflows/build.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    if: "!contains(github.event.head_commit.message, '[skip build]')"
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Run build.py
+        run: python build.py
+
+      - name: Commit posts.json if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if git diff --quiet data/posts.json; then
+            echo "No changes to posts.json"
+          else
+            git add data/posts.json
+            git commit -m "chore: rebuild posts.json [skip build]"
+            git push
+          fi
