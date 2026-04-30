@@ -32,3 +32,4 @@ npm-debug.log*
 .obsidian/
 data/posts/_drafts/
 data/posts/_*.md
+data/dumps/
